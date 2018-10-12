@@ -10,4 +10,4 @@ We use for Front-End: HTML, CSS, JavaScript, AJAX, JQuery, framework Bootstrap.
 Format for data exchange client server: JSON and XML. 
 DBMS: MySQL. 
 Web Server: Apache TOMCAT. 
-Application Server: JBOSS.
+Application Server: Apache TOMCAT. 
