@@ -16,7 +16,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="js/bootstrap.min.js"></script>
  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="css/template.css" type="text/css">
-
+<link rel="stylesheet" href="css/homePage.css" type="text/css">
 </head>
 <body>
 <!-- NAVBAR -->
@@ -196,7 +196,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	<footer> 
 		<div id="imgContent">
-			<img src="img/UNISAIRinverseBianco.png" width="200" height="100" alt="">
+			<img src="img/logoBianco.png" width="200" height="100" alt="">
 			<div id="socialBar">
 				<span id="labelSocial">Seguici su:</span>
 				<span><a href="#" class="linkFooter"><img src="img/facebook.svg" width="32" height="32"></a></span>
