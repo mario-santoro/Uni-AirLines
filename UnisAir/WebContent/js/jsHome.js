@@ -49,8 +49,8 @@ $(window).scroll(function() {
 	
 })
 //controllo min e max della data di partenza e ritorno
-function dat(){
-var now = new Date();
+
+	var now = new Date();
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
@@ -64,7 +64,8 @@ var now = new Date();
     	var min=  document.getElementById('datPartenza').value;
     	document.getElementById('datRitorno').min =min;
 	
-    }}
+    }
+
 //incremento e decremento posti di adulti e bambini tramite pulsanti
 	function incrementAdult(){
 		var val = document.getElementById("adultNumber").value;
