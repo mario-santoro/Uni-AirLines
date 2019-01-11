@@ -2,7 +2,12 @@ body{
 	font-family: 'Roboto Condensed', sans-serif;
 	
 }
-
+.link{
+	color: #ff6600;
+}
+.link:hover {
+	color: #b74900;
+}
 nav{
 	position:fixed;
 	top: 0;
