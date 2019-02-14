@@ -1,4 +1,4 @@
-//In base al click sul radio button, abilito o disabilito la data di ritorno
+//setta alle date di andata e ritorno come valore di default la data corrente
 $(document).ready(function(){ 
 	
 	var now = new Date();
@@ -10,8 +10,9 @@ $(document).ready(function(){
 
 
    $('#datPartenza').val(today);
-   $('#datRitorno').val(today); 
-
+   $('#datRitorno').val(today);
+   
+ //In base al click sul radio button, abilito o disabilito la data di ritorno
 $('#rad1').click(function(){
 $('input[name="datRitorno"]').attr('disabled',false);
 
@@ -26,15 +27,16 @@ $('input[name="datRitorno"]').attr('disabled',true);
 
 
 //compare menu per aggiungere i posti
-
 $("#add-posti").click(function(){
 $(".menu-posti").toggle();
   });
 	
+	//menu login compare al click
 	$(".l").click(function(){
 $("#menu").toggle();
   });
 	
+	//navbar trasparente e solida
 	var fixmeTop = $('#sconto').offset().top;
 $(window).scroll(function() {
     var currentScroll = $(window).scrollTop();
@@ -48,8 +50,8 @@ $(window).scroll(function() {
 });
 	
 })
-//controllo min e max della data di partenza e ritorno
 
+//controllo min e max della data di partenza e ritorno
 	var now = new Date();
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
