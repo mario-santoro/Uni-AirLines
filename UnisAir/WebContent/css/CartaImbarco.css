@@ -1,0 +1,164 @@
+#h2offerta{
+	display:inline-block;
+	color: white;
+	
+}
+
+.biglietto{
+	display:inline-block;
+	color: white;
+	
+}
+
+nav{
+	
+	background-color:#34344c; 
+	
+}
+
+.bordisup{
+	
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+background-color: #ff6600; 	
+	height:55px ;
+}
+
+
+.bordiinf{
+	
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: #ff6600; 	
+	height:55px ;
+	
+}
+
+
+.btnStampa{
+	
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	border:0px;
+	outline:none;
+	background-color: #ff6600;
+	min-width: 45px;
+	height: 30px;
+	color: #34344c;
+	font-size: 1.4em;
+	font-weight: bold;
+	
+	float:right;
+	margin-right:3%;
+	
+	
+	
+}
+
+
+.btnlog{
+    margin: 3%;
+    webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    border:0px;
+    outline:none;
+    background-color: #ff6600;
+    min-width: 45px;
+    height: 30px;
+    color: #34344c;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius:2px;
+
+    float: right;
+    position: relative;
+
+}
+
+
+.campoEm{
+position:relative;
+    margin:5%;
+left:55px;
+
+}
+
+.campoPass{
+position:relative;
+    margin:5%;
+left:30px;
+
+}
+.infoVolo{
+	
+	text-align: center;
+	
+	padding-top: 135px;
+	margin-bottom:2%;
+	
+	
+}
+
+
+
+#dettagliVolo{
+	
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	margin: 5%;
+	margin-top: 0%;
+	height: 500px;
+	border-radius: 10px;
+	color: #ff6600;
+
+	 text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	
+}
+
+
+
+
+.dettagliVoloAeroporto{
+	height: 390px;
+	padding-top:50px;
+	margin-left:5%;
+	
+	display:inline-block;
+}
+
+.dettagliVoloPosto{
+	
+	
+	margin-left:30%;
+	
+	
+	display:inline-block;
+}
+
+@media screen and (max-width: 856px){
+	
+	
+	.dettagliVoloAeroporto{
+	width: 20%;
+	
+}
+
+.dettagliVoloPosto{
+	
+	width: 20%;
+	
+}
+	.biglietto{
+	
+	font-size: 2em;
+	}
+	
+	
+}
+
+
+
+

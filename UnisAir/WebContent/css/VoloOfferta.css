@@ -1,0 +1,221 @@
+h2{
+	font-size:20px;
+	
+}
+nav{
+	
+	background-color:#34344c; 
+	
+}
+.btnlog{
+    margin: 3%;
+    webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    border:0px;
+    outline:none;
+    background-color: #ff6600;
+    min-width: 45px;
+    height: 30px;
+    color: #34344c;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius:2px;
+
+    float: right;
+    position: relative;
+
+}
+
+#popupcontrollo{
+   border-radius: 10px;
+	background-color: white;
+	position: absolute;
+	left: 50%;
+	margin-left: -250px;
+	top: 30%;
+	font-size: 16px;
+	width: 500px;
+	padding: 30px;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 30;
+  cursor: pointer;
+}
+
+.campoEm{
+position:relative;
+    margin:5%;
+left:55px;
+
+}
+
+.campoPass{
+position:relative;
+    margin:5%;
+left:30px;
+
+}
+
+
+.infooff{
+	
+	text-align: center;
+	
+	padding-top: 135px;
+	margin-bottom:2%;
+	
+	
+}
+
+.h2offerta{
+	
+	font-weight: bold;
+	
+}
+
+
+
+
+
+
+.btnPrenota{
+	
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	border:0px;
+	outline:none;
+	background-color: #ff6600;
+	min-width: 45px;
+	height: 30px;
+	color: #34344c;
+	font-size: 1.4em;
+	font-weight: bold;
+	
+	margin-right:3%;
+	float: right;
+	
+	
+}
+
+
+#dettagliOfferta{
+	
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	margin: 5%;
+	margin-top: 0%;
+	height: 500px;
+	border-radius: 10px;
+	color: #ff6600;
+
+	 text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	
+}
+
+
+.bordisup{
+	
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+background-color: #ff6600; 	
+	height:55px ;
+}
+
+
+.bordiinf{
+	
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: #ff6600; 	
+	height:55px ;
+	
+}
+
+
+.dettagliVoloOffertaAndata{
+	height: 390px;
+	padding-top:120px;
+	margin-left:5%;
+	
+	display:inline-block;
+	
+}
+
+.dettagliVoloOffertaRitorno{
+	
+	
+	margin-left:5%;
+	
+	display:inline-block;
+}
+
+
+.PrezziVoloOfferta{
+	
+	
+		
+	
+	margin-left:20%;
+	
+	display:inline-block;
+	
+}
+
+
+
+@media screen and (max-width: 1015px){
+	
+	.PrezziVoloOfferta{
+	
+	
+		
+	
+	margin-left:5%;
+	
+	
+	
+}
+	
+	
+}
+
+@media screen and (max-width: 856px){
+	
+	
+	.dettagliVoloOffertaAndata{
+	width: 20%;
+	
+}
+
+.dettagliVoloOffertaRitorno{
+	
+	width: 20%;
+	
+}
+
+.PrezziVoloOfferta{
+	
+	width: 20%;
+	
+}
+
+	.h2offerta{
+	
+	font-size: 2em;
+	}
+	
+	
+}

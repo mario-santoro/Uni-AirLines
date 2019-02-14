@@ -2,16 +2,71 @@ nav{
 	background-color:#34344c; 
 	
 }
-.spazio{
-	height: 100px;
-	width: 100%;
-	padding: 0;
-	margin: 0;
+.btnlog{
+    margin: 3%;
+    webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    border:0px;
+    outline:none;
+    background-color: #ff6600;
+    min-width: 45px;
+    height: 30px;
+    color: #34344c;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius:2px;
+
+    float: right;
+    position: relative;
+
+}
+
+#popupcontrollo{
+    border-radius:10px;
+    background-color:white;
+    position: absolute;
+  top: 25%;
+  left:30%;
+  font-size: 16px;
+width: 500px;
+padding: 30px;
+}
+
+.campoEm{
+position:relative;
+    margin:5%;
+left:55px;
+
+}
+
+.campoPass{
+position:relative;
+    margin:5%;
+left:30px;
+
+}
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 30;
+  cursor: pointer;
 }
 body{
 	background-color: #DFDFDF;
 	padding: 0;
 	margin: 0;
+}
+.spazio{
+	height: 100px;
+	
 }
 #corpo{
 	display:block;

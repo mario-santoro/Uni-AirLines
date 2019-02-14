@@ -1,8 +1,12 @@
-h2{
-	font-size:30px;
+h2{ margin-left:420px;
+margin-top:50px; }
+h3{
+	display:inline-block;
 	font-weight:bold;
 	font-family:Roboto Condensed;
 	color: #ff6600;
+	padding-top : 50px;
+	
 }
 #Titolo{
 	width: 70%;
@@ -29,7 +33,7 @@ h2{
 	background-color:white;
 	z-index: 1;
 	text-align: left; 
-	margin-top:150px;
+	margin-top:5px;
 webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -39,19 +43,20 @@ box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 .ContenitoreInserimentoDatiAnagraficiTitolo{
 	with:100%;
 	height:100px;
-	background-color:#ecece7;
+	
 	
 }
 .ContenitoreInserimentoDatiAnagraficiForm{
 	with:100%;
 	height:400px;
-	background-color:#ecece7;
 
+	text-align: center;
 	
 }
 .SpazioFooter{
-	height:100px;
-	background-color:#ecece7;
+	
+	margin-bottom: 50px;
+	
 }
 .FormInput{
 	margin:3px;
@@ -67,11 +72,6 @@ nav{
 .spazio{
     height: 100px;
     width: 100%;
-    padding: 0;
-    margin: 0;
-}
-body{
-    background-color: #DFDFDF;
     padding: 0;
     margin: 0;
 }

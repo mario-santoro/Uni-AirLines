@@ -1,0 +1,246 @@
+h2{
+	font-size:20px;
+	
+}
+nav{
+	
+	background-color:#34344c; 
+	
+}
+
+.special{
+	
+font-weight: bold;	
+	
+}
+
+.btnlog{
+    margin: 3%;
+    webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+    border:0px;
+    outline:none;
+    background-color: #ff6600;
+    min-width: 45px;
+    height: 30px;
+    color: #34344c;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius:2px;
+
+    float: right;
+    position: relative;
+
+}
+
+
+.campoEm{
+position:relative;
+    margin:5%;
+left:55px;
+
+}
+
+.campoPass{
+position:relative;
+    margin:5%;
+left:30px;
+
+}
+
+
+#contenitore{
+	
+	text-align: center;
+	
+	
+}
+
+
+
+.infooff{
+	
+	text-align: center;
+	background-color: #DFDFDF;
+	padding-top: 150px;
+	margin-bottom:2%;
+	height: 150px;
+	position: relative;
+	
+	
+}
+
+.h2offerta{
+	
+	font-weight: bold;
+	
+}
+
+
+
+#legenda{
+	background-color: white;
+	padding: 25px;
+	margin: 25px;
+	margin-top: 0px;
+	position: absolute;
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	text-align: center;
+	top:170px;
+	display:inline-block;
+	left: 0;
+	width: 310px;
+	
+}
+
+
+#prezzoAttuale{
+	display:inline-block;
+	background-color: white;
+	padding: 25px;
+	margin: 25px;
+	margin-top: 0px;
+	position: absolute;
+	width: 310px;
+	top:170px;
+	right:0;
+	
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	
+	
+	
+}
+
+#aereo{
+	display:inline-block;
+	margin: 2px;
+	margin-top:-115px;
+	padding-top: 180px;
+	height: auto;
+	padding-bottom: 20px;
+	width:310px;
+	border-top-left-radius:250px;
+	border-top-right-radius:250px;
+	
+	margin-bottom: 50px;
+	background: black;  
+	
+}
+
+.btnPrenota{
+	
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	border: 2px solid black;
+	outline:none;
+	background-color: green;
+	min-width: 40px;
+	height: 40px;
+	color: black;
+	font-size: 1.4em;
+	font-weight: bold;
+	display:inline-block;
+	margin-right:3px;
+	margin-bottom: 20px;
+	
+	
+}
+
+.btnPrenotalegendaocc{
+	
+		webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	border: 2px solid black;
+	outline:none;
+	background-color: red;
+	min-width: 40px;
+	height: 40px;
+	color: black;
+	font-size: 1.4em;
+	font-weight: bold;
+	display:inline-block;
+	margin-right:3px;
+	margin-bottom: 20px;
+	
+}
+
+
+.btnPrenotalegendalib{
+	
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	border: 2px solid black;
+	outline:none;
+	background-color: green;
+	min-width: 40px;
+	height: 40px;
+	color: black;
+	font-size: 1.4em;
+	font-weight: bold;
+	display:inline-block;
+	margin-right:3px;
+	margin-bottom: 20px;
+	
+}
+
+.tipologiaPosto{
+	
+	color: white;
+	font-weight: bold;
+	margin-right: 6px;
+	margin-left: 6px;
+	
+}
+
+
+@media screen and (max-width: 1000px){
+
+	
+	#legenda{
+
+	
+	margin-top: 150px;
+	position: relative;
+	width: 310px;
+	top:0px;
+	
+}
+
+
+#prezzoAttuale{
+	
+	
+	margin-top: 0px;
+	position: static;
+	width: 310px;
+	top:0px;
+	right:0;
+	
+	
+
+	
+	
+}
+
+
+
+.infooff{
+	
+	padding-top: 0px;
+	height: 120px;
+	padding-top: 30px;
+}
+
+
+}
+
+
+

@@ -1,0 +1,67 @@
+.special{
+font-weight: bold;	
+	
+}
+
+.dati {
+	display: inline-block;
+	padding: 25px;
+}
+
+
+
+#RiepilogoUtente {
+	display: inline-block;
+	webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+	moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+	background-color: white;
+	padding: 25px;
+	width: auto;
+	font-size: 1.3em;
+	margin-top: 10px;
+	
+	
+}
+
+#modificadati {
+	width: 40%;
+	display: inline-block;
+	padding: 25px;
+	text-align: center;
+	background-color: white;
+	margin-top: 20px;
+	margin-bottom: 70px;
+	webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+	moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+	font-size: 1.3em;
+	margin-left:30%;
+}
+
+
+
+.FormInput {
+	margin: 3px;
+}
+
+
+
+nav {
+	background-color: #34344c;
+}
+
+
+.spazio {
+	height: 135px;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	
+}
+h2{
+	
+	text-align: center;
+}

@@ -1,0 +1,290 @@
+nav {
+	background-color: #34344c;
+}
+#Logout{
+	text-align: center;
+	float: right;
+	margin: 10px;
+}
+#Admin{
+	color: #ff6600;
+	font-size: 2em;
+}
+#btnContent{
+	text-align: right;
+}
+.popContent{
+	margin: 10px;
+	
+}
+.campoImg {
+	
+}
+
+.campoPerc {
+	width: 50px;
+}
+
+.campoNum {
+
+}
+
+.glyphicon-remove{
+	font-size: 1.5em;
+	float: right;
+	color: #6F6F6F;
+}
+.glyphicon-remove:hover{
+	color: #9B9B9B;
+}
+#overlay {
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 30;
+	cursor: pointer;
+}
+.vuoto{
+	margin:30px;
+	
+}
+#popOfferta {
+	border-radius: 10px;
+	background-color: white;
+	position: absolute;
+	left: 50%;
+	margin-left: -250px;
+	top: 30%;
+	font-size: 16px;
+	width: 500px;
+	padding: 30px;
+}
+
+
+#overlay2 {
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 30;
+	cursor: pointer;
+}
+
+#popAereo {
+	border-radius: 10px;
+	background-color: white;
+	position: absolute;
+	left: 50%;
+	margin-left: -250px;
+	top: 30%;
+	font-size: 16px;
+	width: 500px;
+	padding: 30px;
+}
+
+
+
+body {
+	background-color: #DFDFDF;
+	padding: 0;
+	margin: 0;
+}
+
+.spazio {
+	height: 100px;
+}
+
+#corpo {
+	display: inline-block;
+	width: 800px;
+}
+
+aside {
+	display: inline-block;
+	height: 400px;
+	vertical-align: top;
+	width: 300px;
+	padding: 20px;
+	padding-top: 10px;	
+}
+aside h2{
+	border-bottom: 2px solid #ff6600;
+}
+
+aside a:hover{
+	text-decoration: none;
+}
+
+.volo {
+	background-color: white;
+	-webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+	margin-top: 30px;
+	font-size: 1.9em;
+	
+}
+.volo:first-of-type{
+	margin-top: 15px;
+}
+.volo:last-of-type{
+	margin-bottom: 15px;
+}
+
+.infoVolo{
+	display: inline-block;
+ 	padding: 15px;
+}
+.prezzoContent{
+	text-align: left;
+}
+.prezzo {
+	display: inline-block;
+	vertical-align: top;
+	float: right;
+	padding: 15px;
+}
+
+.bottoni{
+	text-align: right;
+	padding: 10px;	
+}
+.bottoni button{
+	background-color:#ff6600; 
+	background-image: linear-gradient(#FFB889,#F78336);
+	border:1px solid #ff6600;
+	margin: 5px;
+	
+	padding: 5px;
+	min-width:100px;
+	border-radius:5px;
+	font-weight:bold;
+	color:#34344c;
+	cursor: pointer;
+	font-size: 1em;
+}
+.orari{
+	font-size: 2em;
+}
+
+.gl {
+	color: #ff6600;
+}
+.glyphicon-plus{
+	font-size: 0.8em;
+	background-color: #34344c;
+	background-image: linear-gradient(#5E5E89,#34344c);
+	color: #ff6600;
+	height: 40px;
+	border: 0;
+	padding: 5px;
+	padding-top:8px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0;
+	vertical-align: 5px;
+	border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px;
+}
+.textLabel{
+	background-color: #ff6600;
+	background-image: linear-gradient(#FF944D,#F78336);
+	color: #34344c;
+	font-weight: bold;
+	height: 35px;
+	border: 0;
+	padding: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 0;
+	vertical-align: 3px;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.special{
+	font-weight: bold;
+	
+}
+.special2{
+	font-weight: bold;
+	color:red;
+}
+.labelAside{
+	font-size: 2.5em;
+	display: block;
+	margin: 10px;
+	-webkit-transition: -webkit-transform 0.3s; 
+  transition: transform 0.3s;
+	cursor: pointer;
+}
+.labelAside:hover{
+	 transform: scale(1.1, 1.1);
+}
+@media screen and (max-width: 1120px) {
+	aside{
+		width: 200px;
+	}
+	#corpo{
+		width: 550px;
+	}
+}
+@media screen and (max-width: 770px) {
+	aside{
+		display: block;
+		width: 100%;
+		height: auto;
+		text-align: center;
+	}
+	#corpo{
+		display: block;
+		width: 95%;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+	}
+	.labelAside{
+		display: inline-block;
+	}
+	#popOfferta {
+		left: 0;
+		top: 50%;
+		margin-top: -130px;
+		width: 95%;
+		height: 260px;
+		margin-left: 2.5%;
+		margin-right: 2.5%;
+
+}
+
+}
+@media screen and (max-width: 530px) {
+	.prezzo{
+		float: none;
+	}
+	.bottoni button{
+		font-size: 0.6em;
+}
+	
+}
+@media screen and (max-width: 360px) {
+	#Logout{
+		float: none;
+		text-align: left;
+	}
+	.spazio{
+		height: 190px;
+	}
+	.orari{
+	font-size: 1.5em;
+}
+}

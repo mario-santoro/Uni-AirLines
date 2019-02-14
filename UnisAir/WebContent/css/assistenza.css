@@ -1,0 +1,85 @@
+nav{
+	background-color: #34344c;
+}
+.spazio{
+	height: 100px;
+}
+main{
+	text-align: center;
+}
+#infoContainer{
+	display: inline-block;
+	text-align: left;
+	width: 800px;
+	background-color: white;
+	margin: 15px;
+	padding: 25px;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+#checkin
+{
+	height: 315px;
+}
+#pagamento{
+	height: 350px;
+}
+.domanda{
+	font-size: 2.2em;
+	font-weight: bold;
+}
+.risposta{
+	display: block;
+	font-size: 2em;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.info{
+	border-bottom: 1px solid #ff6600;
+	margin-top: 10px;
+}
+.info:last-child{
+	border: 0;
+}
+.info .immagineTutorial{
+	float: left;
+	margin: 10px;
+	margin-bottom: 3px;
+}
+.tutorial{
+	font-size: 2em;
+	margin: 20px;
+}
+.testo{
+	float: left;
+	margin: 10px;
+}
+.testo::first-letter{
+	font-size: 2.3em;
+}
+.testo::first-line{
+	line-height: 1;
+}
+.special{
+	font-weight: bold;
+}
+.contentBagaglio {
+	margin-bottom: 50px;
+}
+.contentBagaglio:last-child{
+	margin-bottom: 15px;
+}
+.contentBagaglio img{
+	display: inline-block;
+}
+.spiegazioneBagaglio h3{
+	font-weight: bold;
+}
+.spiegazioneBagaglio{
+	display: inline-block;
+	width: 410px;
+	vertical-align:middle;
+	font-size: 1.5em;
+	
+}
