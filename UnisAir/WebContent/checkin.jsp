@@ -18,8 +18,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="js/bootstrap.min.js"></script>
  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="css/template.css" type="text/css">
-<link rel="stylesheet" href="css/pagamento.css" type="text/css">
-
+<link href="css/checkin.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- NAVBAR -->
@@ -44,36 +43,31 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </nav>
 	  <div class="spazio"></div>
 
+
 <main>
-	<h2>Seleziona metodo di pagamento</h2>
-	<form>
-	<button type="button" class="btnForm">Indietro</button>
-	<div id="dataShow">
-			Nome: <span class="result">Matteo</span><br>
-			Cognome: <span class="result">Pastore</span><br>
-			Volo N.: <span class="result">UA2788</span><br>
-			Bagaglio/i: <span class="result">Premium +45&euro;</span><br>
-			Posto/i:<span class="result"> 5 Business</span><br>
-			Tipo di Pagamento:<br>
-			<select>
-				<option>Visa</option>
-				<option>Mastercard</option>
-				<option>AmericanExpress</option>
-			</select>
-			<br>
-			Nome Proprietario:<br>
-			<input type="text" name="proprietario" placeholder="Nome Proprietario" autofocus><br>
-			Numero Carta:<br>
-			<input type="number" name="numero" placeholder="Numero Carta(max 16)"><br>
-			Mese di scadenza&nbsp;/&nbsp;Anno di scadenza<br>
-			<input type="number"  name="anno">/<input type="number" name="mese"><br>
-			CVC/CVV:<br>
-			<input type="number" name="cvc" placeholder="(3 cifre)"><br>
+	<div class="storico">
+		<span class="infoStorico">
+			Volo Prenotato in data <span class="special">10/03/2019</span> da <span class="special">Mondragone</span> a
+			 <span class="special">Marte</span> il giorno <span class="special">20/03/2019</span>
+		</span>
+		<div class="infoVolo">
+			Numero volo: <span class="special">UA2555</span><br>
+			Posti prenotati: <span class="special">3(Posti: A1-A2-A3)</span><br>
+			Totale bagagli: <span class="special">3</span><br>
+			Prezzo: <span class="special">9999&euro;</span><br>
+		</div>
+		<div class="confermaPasseggeri">
+			<h2>PASSEGGERI - <span class="sottotitolo">Spunta per confermare passeggero</span></h2>
+			Passeggero1 <input type="checkbox"><br>
+			Passeggero2 <input type="checkbox"><br>
+			Passeggero3 <input type="checkbox"><br>
+		</div>
+		<div class="buttonContent">
+			<button type="button" class="BtnStorico">Procedi al check-in</button>
+		</div>
 	</div>
-	
-	<input type="submit" value="Continua" class="btnForm">
-	</form>
 </main>
+
 
 
 <footer> 
@@ -117,5 +111,6 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 				</div>
 	</footer>
 	
+
 </body>
 </html>

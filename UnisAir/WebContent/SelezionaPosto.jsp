@@ -17,18 +17,20 @@
 <link rel="icon" href="img/ms-icon-310x310.png" />
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
 	rel="stylesheet">
-
 <script src="js/jquery.js"></script>
-
-
 <script src="js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway"
 	rel="stylesheet">
 
 <link rel="stylesheet" href="css/template.css" type="text/css">
-<link rel="stylesheet" href="css/SelBagaglio.css" type="text/css">
+<link rel="stylesheet" href="css/selezionaPosto.css" type="text/css">
 
 
+<script>
+function Avvertimento() {
+  alert("tornando indietro cancelli tutto");
+}
+</script>
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -47,63 +49,105 @@
 
 
 	</nav>
-<div class="spazio"></div>
 
-	<div id="contenuto">
-	<h2>
-		seleziona bagaglio per volo num: <span id="infoVolo"> 0000000 </span>
-		in data: <span id="dataVolo"> 00/00/00</span> del passeggero <span id="passeggero"> tizio</span>
-	</h2>
+
+	
+
+	<div id="contenitore">
+	
+	<div id="legenda">
+		<h2>Legenda sovrapprezzi classi di viaggio</h2>
 		<br>
-
-		<div class="bagaglio">
-		<h2>
-			Bagaglio minore di 15kg 
-			<br>
-			<img src="img/bagagli/valiigia15kg.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag15()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber15">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag15()">+</button>
-			</h2>
-		</div>
-
-		<div class="bagaglio">
-		<h2>
-			Bagaglio tra 15kg e 25kg
-			<br>
-			<img src="img/bagagli/15e25.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag20()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber20">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag20()">+</button>
-			</h2>
-		</div>
-
-		<div class="bagaglio">
-		<h2>
-			Bagaglio maggiore di 25kg 
-			<br>
-			<img src="img/bagagli/valigia25kg.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag25()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber25">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag25()">+</button>
-			</h2>
-		</div>
-<br>
-<div id="bottoni">
-<button type="button" class="btnSel" id="indietro"  >Indietro</button>
-<button type="button" class="btnSel" id="continua"  >Continua</button>
-</div>
+		<h3>Premium: <span class="special">+50&euro;</span></h3>
+		<br>
+		<h3>Business: <span class="special">+20&euro;</span></h3>
+		<br>
+		<h3>Economy: <span class="special">+0&euro;</span></h3>
+		<br>
+		<h3>Posto Libero: </h3><button class="btnPrenotalegendalib" type="button" >Z1</button>
+		<br>
+		<h3>Posto Occupato: </h3><button class="btnPrenotalegendaocc" type="button" >Z1</button>
 	</div>
+	<br>
+	
+	
+	<div class="infooff">
+		<h2>
+			Seleziona posto per il volo <span id="volo">Volo</span>
+		</h2>
+	</div>
+		<div id="aereo">
+		
+		
+			<br> <span class="tipologiaPosto">PREMIUM</span>
+			<hr color="white">
+			<%!public static char printChar(int numP){
+			int mod=numP%21;
+			mod+=65;
+			
+			char lettera=(char)mod;
+			
+			return lettera;
+		} %>
+			<%int i=0, p=0;
+		for( i=0;i<3;i++){ 
+		for(p=0;p<6;p++){
+		%>
+
+			<button class="btnPrenota" type="button" onclick=""><%=printChar(i)  %><%=p+1 %></button>
+			<%if(p==2) {%>
+			<span class="tipologiaPosto"><%=i+1 %></span>
+			<%}} %>
+
+
+			<%} %>
 
 
 
+			<br> <span class="tipologiaPosto">BUSINESS</span>
+			<hr color="white">
+			<%for(;i<8;i++){for(p=0;p<6;p++){
+			%>
+
+			<button class="btnPrenota" type="button" onclick=""><%=printChar(i)  %><%=p+1 %></button>
+			<%if(p==2) {%>
+			<span class="tipologiaPosto"><%=i+1 %></span>
+			<%}} %>
 
 
+			<%} %>
+
+			<br> <span class="tipologiaPosto">ECONOMY</span>
+			<hr color="white">
+			<%for(;i<18;i++){for(p=0;p<6;p++){
+			%>
+
+			<button class="btnPrenota" type="button" onclick=""><%=printChar(i)  %><%=p+1 %></button>
+			<%if(p==2) {%>
+			<span class="tipologiaPosto"><%=i+1 %></span>
+			<%}} %>
 
 
+			<%} %>
+		</div>
+		<br>
+		<div id="prezzoAttuale">
+		
+		<h3>
+		Prezzo base: <span id="prezzobase" class="special"> tanti&euro;</span>
+		<br>
+		<br>
+		Sovrapprezzo posti: <span id="sovrapprezzo" class="special"> piu' tanti&euro;</span>
+		<br>
+		<br>
+		Totale: <span id="totale" class="special"> un botto&euro;</span>
+		</h3>
+		<br>
+		<button class="btnR"  onCLick="Avvertimento()" >Indietro</button>
+		<button class="btnR"  >Continua</button>
+	</div>
+		
+	</div>
 
 
 
@@ -152,7 +196,6 @@
 	</footer>
 
 
-<script type="text/JavaScript" src="js/jsTemplate.js"></script>
-<script type="text/JavaScript" src="js/jsSelBagaglio.js"></script>
+	<script type="text/JavaScript" src="js/jsTemplate.js"></script>
 </body>
 </html>

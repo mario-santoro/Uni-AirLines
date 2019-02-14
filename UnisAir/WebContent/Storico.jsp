@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%>
+
+<%@page import="model.Prenotazione"%>
+<%@page import="model.Utente"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,95 +22,66 @@
 <link rel="icon" href="img/ms-icon-310x310.png" />
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
 	rel="stylesheet">
-
 <script src="js/jquery.js"></script>
-
-
 <script src="js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway"
 	rel="stylesheet">
-
 <link rel="stylesheet" href="css/template.css" type="text/css">
-<link rel="stylesheet" href="css/SelBagaglio.css" type="text/css">
-
-
+<link href="css/storico.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<!-- NAVBAR -->
+
+	<%ArrayList<Prenotazione> p=(ArrayList<Prenotazione>)session.getAttribute("prenotazioni");
+Utente u=(Utente)session.getAttribute("userBean");%>
+	<!-- NAVBAR -->
 	<nav>
-		<a> <img src="img/logo.png" width="200" height="100" alt="">
-		</a> <a> <span class="l">Accedi</span>
+		<a href="index.jsp"> <img src="img/logo.png" width="200"
+			height="100" alt="">
+		</a> <a> <span class="l"><span class="glyphicon glyphicon-user"></span>
+				<%=u.getNome() %></span>
 		</a>
 		<div id="menu">
-			Email:<br> <input class="campo-login" type="text"
-				placeholder="E-mail"><br> Password:<br> <input
-				class="campo-login" type="text" placeholder="Password"><br>
-			<input class="btnR" type="submit" value="Accedi">
-			<p>Non sei ancora registrato?</p>
-			<a href="#" class="link">Registrati!</a>
+			<div id="contenutimenu">
+				<a href="VisualizzaPrenotazioni" class="link">Storico</a> <br>
+
+				<a href="ModificaUtente.jsp" class="link">Modifica dati</a> <br>
+
+				<a href="Logout" class="link">Logout</a>
+			</div>
 		</div>
-
-
 	</nav>
-<div class="spazio"></div>
+	<div class="spazio"></div>
 
-	<div id="contenuto">
-	<h2>
-		seleziona bagaglio per volo num: <span id="infoVolo"> 0000000 </span>
-		in data: <span id="dataVolo"> 00/00/00</span> del passeggero <span id="passeggero"> tizio</span>
-	</h2>
-		<br>
 
-		<div class="bagaglio">
-		<h2>
-			Bagaglio minore di 15kg 
-			<br>
-			<img src="img/bagagli/valiigia15kg.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag15()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber15">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag15()">+</button>
-			</h2>
+	<main> <%if(p.size()==0){ %> <br>
+	<br>
+	<h2>Non ci sono prenotazioni effettuate</h2>
+	<br>
+	<br>
+	<br>
+	<br>
+	<%} %> <% for(int i=0;i<p.size();i++){%>
+	<div class="storico">
+		<span class="infoStorico"> Volo Prenotato in data <span
+			class="special"><%=p.get(i).getData() %></span> da <span
+			class="special"><%=p.get(i).getVolo().getAeroportoPartenza() %></span>
+			a <span class="special"><%=p.get(i).getVolo().getAeroportoDestinazione() %></span>
+			il giorno <span class="special"><%=p.get(i).getVolo().getData() %></span>
+		</span>
+		<div class="infoVolo">
+			Numero volo: <span class="special"><%=p.get(i).getVolo().getCodVolo() %></span><br>
+			Posti prenotati: <span class="special"><%=p.get(i).getNumBiglietti() %>(Posti:
+				<%for(int j=0;j<p.get(i).getPasseggeri().size();j++){ %> <%=p.get(i).getPasseggeri().get(j).getPosto() %>-
+				<%} %>)</span><br> Totale bagagli: <span class="special"><%=p.get(i).getNumBagagliTot() %></span><br>
+			Prezzo: <span class="special"><%=p.get(i).getPrezzoTotale() %>&euro;</span><br>
 		</div>
-
-		<div class="bagaglio">
-		<h2>
-			Bagaglio tra 15kg e 25kg
-			<br>
-			<img src="img/bagagli/15e25.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag20()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber20">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag20()">+</button>
-			</h2>
+		<div class="buttonContent">
+		
+			<button type="button" class="BtnStorico">Procedi al check-in</button>
 		</div>
-
-		<div class="bagaglio">
-		<h2>
-			Bagaglio maggiore di 25kg 
-			<br>
-			<img src="img/bagagli/valigia25kg.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag25()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber25">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag25()">+</button>
-			</h2>
-		</div>
-<br>
-<div id="bottoni">
-<button type="button" class="btnSel" id="indietro"  >Indietro</button>
-<button type="button" class="btnSel" id="continua"  >Continua</button>
-</div>
 	</div>
-
-
-
-
-
-
-
-
-
+	<%} %> </main>
 
 	<footer>
 		<div id="imgContent">
@@ -124,11 +100,12 @@
 		<div id="contentWrapper">
 			<div id="assistenza" class="footerComponent">
 				<h5 class="text-uppercase">ASSISTENZA</h5>
-				<a href="#" class="linkFooter"><p>Domande frequenti</p></a> <a
-					href="#" class="linkFooter"><p>Check-in online</p></a> <a href="#"
-					class="linkFooter"><p>Metodi di pagamento</p></a> <a href="#"
-					class="linkFooter"><p>Bagagli</p></a> <a href="#"
-					class="linkFooter"><p>Ritardi e cancellazione</p></a>
+				<a href="assistenza.jsp" class="linkFooter"><p>Domande
+						frequenti</p></a> <a href="assistenza.jsp" class="linkFooter"><p>Check-in
+						online</p></a> <a href="assistenza.jsp" class="linkFooter"><p>Metodi
+						di pagamento</p></a> <a href="assistenza.jsp" class="linkFooter"><p>Bagagli</p></a>
+				<a href="assistenza.jsp" class="linkFooter"><p>Ritardi e
+						cancellazione</p></a>
 			</div>
 			<div id="contatti" class="footerComponent">
 				<h5 class="text-uppercase">CONTATTI</h5>
@@ -151,8 +128,7 @@
 		</div>
 	</footer>
 
+	<script type="text/JavaScript" src="js/jsHome.js"></script>
 
-<script type="text/JavaScript" src="js/jsTemplate.js"></script>
-<script type="text/JavaScript" src="js/jsSelBagaglio.js"></script>
 </body>
 </html>

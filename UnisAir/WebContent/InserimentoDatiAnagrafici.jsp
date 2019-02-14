@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>UnisAir - Registrazione</title>
+<title>UnisAir</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <!-- Popper JS -->
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
@@ -21,42 +22,42 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="css/template.css" type="text/css">
 <link rel="stylesheet" href="css/InserimentoDatiAnagrafici.css" type="text/css">
+<link rel="icon" href="img/ms-icon-310x310.png" />
 </head>
 <body>
 	<!-- NAVBAR -->
-	<nav id="p" class="navbar navbar-expand-sm navbar-light"
-		style="position: fixed; width: 100%; z-index: 10; background-color: #34344c; padding: 0px; padding-right: 25px; margin: 0px; border-radius: 0px;">
-		<a class="collapse navbar-collapse" href="#"> <img
-			src="img/logo.png" width="200" height="100" alt="">
-		</a>
-		<ul class="navbar-nav">
-			<!-- Dropdown -->
-			<li class="dropdown"><a class="nav-link dropdown-toggle"
-				href="#" id="navbardrop" data-toggle="dropdown"> <span class="l">Accedi</span>
-			</a>
-				<div class="dropdown-menu">
-					Email:<br> <input class="campo-login" type="text"
-						placeholder="E-mail"><br> Password:<br> <input
-						class="campo-login" type="text" placeholder="Password"><br>
-					<input class="btnR" type="submit" value="Accedi">
-					<p>Non sei ancora registrato?</p>
-					<a href="#" class="link">Registrati!</a>
-				</div></li>
-		</ul>
-	</nav>
+	<nav>
+  <a>
+    <img src="img/logo.png" width="200" height="100" alt="">
+  </a>
+      <a>
+       <span class="l">Accedi</span> 
+      </a>
+      <div id="menu">
+        Email:<br>
+        <input class="campo-login"  type="text" placeholder="E-mail"><br>
+        Password:<br>
+        <input class="campo-login" type="text" placeholder="Password"><br>
+        <input class="btnR" type="submit" value="Accedi">
+       	<p>Non sei ancora registrato?</p>
+       	<a href="#" class="link">Registrati!</a>
+      </div>
+    
+  
+</nav>
 	
 		
-	<div class="ContenitoreInserimentoDatiAnagraficiTitolo">
-	<div id="spazio"></div>
+<div class="spazio"></div>
+	
 
 	<!-- Form di Inserimento Dati Anagrafici -->
-		<div id="Titolo">
+		
 	<h2>Inserimento dati anagrafici dei passeggeri</h2>
-	</div>
-	</div>
+	
+
 	<%for(int i=0;i<4;i++){ %>
 	<div class="ContenitoreInserimentoDatiAnagraficiForm">
-
+		<h3>Passeggero n:</h3>
 	<div id="DatiAnagrafici">
 	
 	<form id="FormDatiAnagrafici">
@@ -117,16 +118,9 @@
   
       <td align="left"><input id="ButtonAnnulla" class="btnR" type="submit" value="Annulla"  />
       <td align="right"></td>
-      <td align="left"><input id="ButtonConferma" onclick="return validateForm() class="btnR" type="submit" value="Continua"  /></td>
+      <td align="left"><input id="ButtonConferma" onclick="return validateForm() " class="btnR" type="submit" value="Continua"  /></td>
     </tr>
     </table></div>
-
-
-
-
-
-
-
 	<footer> 
 		<div id="imgContent">
 			<img src="img/logoBianco.png" width="200" height="100" alt="">
@@ -151,13 +145,11 @@
 							<h5 class="text-uppercase">CONTATTI</h5>
 							<a href="#" class="linkFooter"><p>Tel: 555-00000</p></a>
 							<a href="#" class="linkFooter"><p>e-mail:info@unisair.com</p></a>
-
 				</div>
 				<div id="Partner" class="footerComponent">
 							<h5 class="text-uppercase">BUSINESS PARTNERS</h5>
 							<a href="#" class="linkFooter"><p>Affiliate marketing</p></a>
 							<a href="#" class="linkFooter"><p>e-Procurement</p></a>
-
 				</div>
 		</div>	
 		<div id="infoFooter">
@@ -167,7 +159,6 @@
 					<span class="info"><a href="#">Informativa sulla privacy</a></span>
 				</div>
 	</footer>
-
 	<script type="text/JavaScript" src="js/jsHome.js"></script>
 <script>
 function validateForm()

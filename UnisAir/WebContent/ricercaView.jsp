@@ -41,7 +41,18 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
   
 </nav>
-	  <div class="spazio"></div>
+<div class="spazio"></div>
+	 	<div id="overlay" >
+    <div id="popupcontrollo"  >
+            <span class="campitestopopup">Per procedere devi inserire</span>
+            <br>
+            <span class="campitestopopup">email: <input class="campoEm" type="text"></span>
+            <br>
+            <span class="campitestopopup">password: <input class="campoPass" type="text"></span>
+            <br>
+            <input class="btnlog" type="submit" value="login" onclick="off()" >
+        </div>
+    </div>
 <div id="corpo">
 <aside>
 	<div id="partenzaBox" class="boxAside">
@@ -90,7 +101,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 								<span class="orarioVoli">10:30 <span class="gl">&#9866; &#9866; &#9992; </span>12:30</span>
 								<br>
 								Durata volo: 2 ore<br>
-								<button> Prenota ora</button>
+								<button onclick="on()" > Prenota ora</button>
 						</div>
 						<div class="volo">
 								Volo num:	01	<div class="prezzo"> 70 &euro;</div><br>
@@ -172,6 +183,6 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 					<span class="info"><a href="#">Informativa sulla privacy</a></span>
 				</div>
 	</footer>
-	
+	<script type="text/JavaScript" src="js/jsTemplate.js"></script>
 </body>
 </html>

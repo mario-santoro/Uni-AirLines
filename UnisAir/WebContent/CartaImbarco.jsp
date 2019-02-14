@@ -17,18 +17,13 @@
 <link rel="icon" href="img/ms-icon-310x310.png" />
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
 	rel="stylesheet">
-
 <script src="js/jquery.js"></script>
-
-
 <script src="js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway"
 	rel="stylesheet">
 
 <link rel="stylesheet" href="css/template.css" type="text/css">
-<link rel="stylesheet" href="css/SelBagaglio.css" type="text/css">
-
-
+<link rel="stylesheet" href="css/CartaImbarco.css" type="text/css">
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -47,62 +42,46 @@
 
 
 	</nav>
-<div class="spazio"></div>
 
-	<div id="contenuto">
-	<h2>
-		seleziona bagaglio per volo num: <span id="infoVolo"> 0000000 </span>
-		in data: <span id="dataVolo"> 00/00/00</span> del passeggero <span id="passeggero"> tizio</span>
-	</h2>
-		<br>
-
-		<div class="bagaglio">
+	<div class="infoVolo">
 		<h2>
-			Bagaglio minore di 15kg 
-			<br>
-			<img src="img/bagagli/valiigia15kg.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag15()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber15">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag15()">+</button>
-			</h2>
-		</div>
-
-		<div class="bagaglio">
-		<h2>
-			Bagaglio tra 15kg e 25kg
-			<br>
-			<img src="img/bagagli/15e25.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag20()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber20">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag20()">+</button>
-			</h2>
-		</div>
-
-		<div class="bagaglio">
-		<h2>
-			Bagaglio maggiore di 25kg 
-			<br>
-			<img src="img/bagagli/valigia25kg.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag25()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber25">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag25()">+</button>
-			</h2>
-		</div>
-<br>
-<div id="bottoni">
-<button type="button" class="btnSel" id="indietro"  >Indietro</button>
-<button type="button" class="btnSel" id="continua"  >Continua</button>
-</div>
+			Stampa carta di imbarco per il volo <span id="numvolo"> 000000 </span> da <span id="partenza"> aeroporto </span> a <span
+				id="arrivo"> aeroporto </span> <br> nel giorno <span
+				id="data_partenza"> 00/00/00 </span> 
+		</h2>
 	</div>
+	
 
+				
+	<div id="dettagliVolo" style=" background:  linear-gradient(to bottom right,rgba(250,120,0,0.7),rgba(250,150,0,0.7)) , url(img/logo.png) ; background-repeat: no-repeat;  background-size: contain;">
+		
+		<div class="bordisup">
+		<img src="img/logoBianco.png" width="200" height="100">
+		</div>
 
+		<div class="dettagliVoloAeroporto">
+			<h2 class="biglietto">
+				Volo numero: <span id="numVolo"> 555566698</span> <br> <br>
+				Gate <span id="gate"> C66</span> <br>
+				<br> Ora di partenza: <span id="orpar"> 00:00</span> <br>
+				<br> Ora di arrivo: <span id="orarr"> 03:35</span>
+			</h2>
+		</div>
 
+	<div class="dettagliVoloPosto">
+			<h2 class="biglietto">
+				Nome: <span id="nomePass"> Tiziano</span> <br> <br> 
+				Cognome: <span id="cognomePass"> Ferro</span> <br> 
+				<br> Posto <span id="Posto"> A6</span> <br>
+				<br> Classe <span id="ClasseViaggio"> Premium</span>
+		</h2>
+		</div>
+			
 
-
-
+	<div class="bordiinf">
+		<input class="btnStampa" type="submit" value="Stampa">
+	</div>	
+	</div>
 
 
 
@@ -151,8 +130,7 @@
 		</div>
 	</footer>
 
-
+	
 <script type="text/JavaScript" src="js/jsTemplate.js"></script>
-<script type="text/JavaScript" src="js/jsSelBagaglio.js"></script>
 </body>
 </html>

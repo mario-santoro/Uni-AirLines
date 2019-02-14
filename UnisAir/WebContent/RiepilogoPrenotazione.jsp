@@ -26,7 +26,7 @@
 	rel="stylesheet">
 
 <link rel="stylesheet" href="css/template.css" type="text/css">
-<link rel="stylesheet" href="css/SelBagaglio.css" type="text/css">
+<link rel="stylesheet" href="css/Riepilogo.css" type="text/css">
 
 
 </head>
@@ -47,64 +47,68 @@
 
 
 	</nav>
-<div class="spazio"></div>
 
-	<div id="contenuto">
-	<h2>
-		seleziona bagaglio per volo num: <span id="infoVolo"> 0000000 </span>
-		in data: <span id="dataVolo"> 00/00/00</span> del passeggero <span id="passeggero"> tizio</span>
-	</h2>
-		<br>
+	<div class="spazio"></div>
 
-		<div class="bagaglio">
-		<h2>
-			Bagaglio minore di 15kg 
+	<h2>Riepilogo</h2>
+	<br>
+
+	<div id="modificadati">
+
+		<form id="ModificaDatiUtente" onsubmit="return validateForm()">
+
+			<div class="dati">
+
+				Volo num: <span id="numVolo" class="special">000000</span>
+
+			</div>
+
 			<br>
-			<img src="img/bagagli/valiigia15kg.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag15()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber15">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag15()">+</button>
-			</h2>
-		</div>
 
-		<div class="bagaglio">
-		<h2>
-			Bagaglio tra 15kg e 25kg
-			<br>
-			<img src="img/bagagli/15e25.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag20()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber20">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag20()">+</button>
-			</h2>
-		</div>
 
-		<div class="bagaglio">
-		<h2>
-			Bagaglio maggiore di 25kg 
+
+			<div id="RiepilogoUtente">
+				Nome: <span id="nome" class="special"> Tiziano</span>  Cognome: <span
+					id="cognome" class="special"> Ferro</span> <br> Bagaglio: <span id="bagaglio" class="special">
+					Grosso</span> <br> Posto: <span id="posto" class="special"> C3</span> <br>
+					 Classe: <span id="posto" class="special"> Business</span> <br>
+			</div>
+
 			<br>
-			<img src="img/bagagli/valigia25kg.jpg" ><br>
-			<br>Quantita'?<br><br>
-			<button type="button" class="btnSel" id="btnSx"  onClick="decrementbag25()">-</button>
-				 <input  class="campoSel" type="number" min="0" max="5" value="0" id="bagNumber25">
-				 <button type="button" class="btnSel" id="btnDx" onClick="incrementbag25()">+</button>
-			</h2>
-		</div>
+			<br>
+			<div id="RiepilogoUtente">
+				Nome: <span id="nome" class="special"> Tiziano</span>  Cognome: <span
+					id="cognome" class="special"> Ferro</span> <br> Bagaglio: <span id="bagaglio" class="special">
+					Grosso</span> <br> Posto: <span id="posto" class="special"> C3</span> <br>
+					 Classe: <span id="posto" class="special"> Business</span> <br>
+			</div>
+
+			<br>
+			<br>
+			<div id="RiepilogoUtente">
+				Nome: <span id="nome" class="special"> Tiziano</span>  Cognome: <span
+					id="cognome" class="special"> Ferro</span> <br> Bagaglio: <span id="bagaglio" class="special">
+					Grosso</span> <br> Posto: <span id="posto" class="special"> C3</span> <br>
+					 Classe: <span id="posto" class="special"> Business</span> <br>
+			</div>
+
+			<br>
 <br>
-<div id="bottoni">
-<button type="button" class="btnSel" id="indietro"  >Indietro</button>
-<button type="button" class="btnSel" id="continua"  >Continua</button>
-</div>
+
+
+			<div class="dati">
+
+				Tipo carta: <span id="carta" class="special">Mastercazz</span> <br> Numero
+				carta: <span id="NumCarta" class="special">1111 2222 3333 4444</span> <br>
+				Prezzo totale: <span id="numVolo" class="special"> 1340</span> <br> <br> <input
+					id="IndietroRiepilogo" class="btnR" type="submit" value="Indietro" />
+				<input id="ConfermaOrdine" class="btnR" type="submit"
+					value="Conferma" />
+			</div>
+
+
+		</form>
 	</div>
-
-
-
-
-
-
-
-
 
 
 	<footer>
@@ -152,7 +156,7 @@
 	</footer>
 
 
-<script type="text/JavaScript" src="js/jsTemplate.js"></script>
-<script type="text/JavaScript" src="js/jsSelBagaglio.js"></script>
+	<script type="text/JavaScript" src="js/jsTemplate.js"></script>
+	<script type="text/JavaScript" src="js/jsSelBagaglio.js"></script>
 </body>
 </html>

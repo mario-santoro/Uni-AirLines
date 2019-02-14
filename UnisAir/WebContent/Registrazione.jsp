@@ -15,45 +15,67 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
 	rel="stylesheet">
+	<link rel="icon" href="img/ms-icon-310x310.png" />
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Raleway"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/template.css" type="text/css">
 <link rel="stylesheet" href="css/Registrazione.css" type="text/css">
+<script type="text/javascript">
+$(document).ready(function(){ 
+	var denied="${err}"
+		if(denied=="true"){
+			
+			      document.getElementById("overlay3").style.display = "block";
+			    
+
+			
+		}
+	});
+	function offErr() {
+	document.getElementById("overlay3").style.display = "none";
+	}
+
+</script>
 </head>
 <body>
+<%session.setAttribute("err", false); %>
 	<!-- NAVBAR -->
-	<nav id="p" class="navbar navbar-expand-sm navbar-light"
-		style="position: fixed; width: 100%; z-index: 10; background-color: #34344c; padding: 0px; padding-right: 25px; margin: 0px; border-radius: 0px;">
-		<a class="collapse navbar-collapse" href="#"> <img
-			src="img/logo.png" width="200" height="100" alt="">
-		</a>
-		<ul class="navbar-nav">
-			<!-- Dropdown -->
-			<li class="dropdown"><a class="nav-link dropdown-toggle"
-				href="#" id="navbardrop" data-toggle="dropdown"> <span class="l">Accedi</span>
-			</a>
-				<div class="dropdown-menu">
-					Email:<br> <input class="campo-login" type="text"
-						placeholder="E-mail"><br> Password:<br> <input
-						class="campo-login" type="text" placeholder="Password"><br>
-					<input class="btnR" type="submit" value="Accedi">
-					<p>Non sei ancora registrato?</p>
-					<a href="#" class="link">Registrati!</a>
-				</div></li>
-		</ul>
-	</nav>
-	<div id="ContenitoreRegistrazione">
-	<div id="spazio"></div>
+<nav>
+  <a>
+    <img src="img/logo.png" width="200" height="100" alt="">
+  </a>
+      <a href="index.jsp">
+       <span class="l">HOME</span> 
+      </a>
 
-	<!-- Form di Registrazione -->
-		<div id="Titolo">
-	<h2>La tua registrazione richiederà solo un minuto</h2>
+</nav>
+<div class="spazio"></div>
+	
+	
+<div id="overlay3">
+		<div id="accessoerrato">
+		<span onclick="offErr()" id="x" class="glyphicon glyphicon-remove"></span>
+			<h2>Credenziali Errate</h2>
+			
+				<span class="special">Email già presente, riprova. </span> 
+			 
+				<br> 
+			</div>
+		
+		
 	</div>
+	
+	<div id="ContenitoreRegistrazione">
+	
+<h2>La tua registrazione richiederà solo un minuto</h2>
+<br>
+	<!-- Form di Registrazione -->
+	
 	<div id="registrazione">
 
-	<form id="FormRegistrazione" onsubmit="return validateForm()">
+	<form id="FormRegistrazione" action="RegistrazioneUtente" method="POST" onsubmit="return validateForm()">
   <table>
     <tr>
       <td align="right"><label>Nome</label></td>
@@ -80,7 +102,7 @@
     </tr>
     <tr>
       <td align="right"><label>Password</label></td>
-      <td align="left"><input class="FormInput"  type="password" name="Password" placeholder="Password" required /></td>
+      <td align="left"><input class="FormInput"  type="password" name="Password" id="Password" placeholder="Password" required /></td>
     </tr>
     <tr>
       <td align="right"><label>Conferma Password</label></td>
@@ -100,8 +122,7 @@
 
 
 
-
-	<footer> 
+<footer> 
 		<div id="imgContent">
 			<img src="img/logoBianco.png" width="200" height="100" alt="">
 			<div id="socialBar">
@@ -115,11 +136,11 @@
 		<div id="contentWrapper">	
 				<div id="assistenza" class="footerComponent">
 							<h5 class="text-uppercase">ASSISTENZA</h5>
-							<a href="#" class="linkFooter"><p>Domande frequenti</p></a>
-							<a href="#" class="linkFooter"><p>Check-in online</p></a>
-							<a href="#" class="linkFooter"><p>Metodi di pagamento</p></a>
-							<a href="#" class="linkFooter"><p>Bagagli</p></a>
-							<a href="#" class="linkFooter"><p>Ritardi e cancellazione</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Domande frequenti</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Check-in online</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Metodi di pagamento</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Bagagli</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Ritardi e cancellazione</p></a>
 				</div>
 				<div id="contatti" class="footerComponent">
 							<h5 class="text-uppercase">CONTATTI</h5>
@@ -141,6 +162,7 @@
 					<span class="info"><a href="#">Informativa sulla privacy</a></span>
 				</div>
 	</footer>
+	
 
 	<script type="text/JavaScript" src="js/jsHome.js"></script>
 <script>
@@ -161,11 +183,11 @@ function validateForm()
 	        return false;
 	}
 function validateNome(Nome){
-	var Regexp = /^[a-zA-Z ]+$/;
+	var Regexp =/^[A-Za-z ]{2,}$/
 	if(Nome.value.match(Regexp))
 		return true;
 	else{
-		alert('Il campo Nome deve contenere solo lettere e spazi!');
+		alert('Il campo Nome deve contenere solo lettere e spazi e almeno 2 caratteri!');
 		Nome.focus();
 		return false;
 	}
@@ -181,18 +203,18 @@ function validateEmail(Email){
 	}
 }
 function validatePassword(Password){
-	var Regexp =  /^[a-zA-Z0-9]+$/;
+	var Regexp =  /^[A-Za-z0-9]{5,}$/
 	if(Password.value.match(Regexp))
 		return true;
 	else{
-		alert('Il campo Password deve contenere solo lettere e numeri!');
+		alert('Il campo Password deve contenere solo lettere e numeri ed essere almeno 5 caratteri!');
 		Password.focus();
 		return false;
 	}
 }
 function validateConfermaPassword(ConfermaPassword){
-	
-	if(ConfermaPassword.value.match(Password))
+	var password= document.getElementById("Password").value;
+	if(ConfermaPassword.value.match(password))
 		return true;
 	else{
 		alert('La password non corrisponde!');
@@ -201,25 +223,29 @@ function validateConfermaPassword(ConfermaPassword){
 	}
 }
 function validateCognome(Cognome){
-	var Regexp = /^[a-zA-Z ]+$/;
+	var Regexp = /^[A-Za-z ]{3,}$/
 	if(Cognome.value.match(Regexp))
 		return true;
-	else{
-		alert('Il campo Cognome deve contenere solo lettere e spazi!');
+	else{ 
+		alert('Il campo Cognome deve contenere solo lettere e spazi ed almeno 3 caratteri!');
 		Cognome.focus();
 		return false;
 	}
 }
 function validateNumeroDocumento(NumeroDocumento){
-	var Regexp = /^[a-zA-Z0-9]+$/;
+	var Regexp =/^[A-Za-z0-9]{9,}$/
 	if(NumeroDocumento.value.match(Regexp))
 		return true;
 	else{
-		alert('Il campo Numero Documento deve contenere solo lettere e numeri!');
+		alert('Il campo Numero Documento deve contenere solo lettere e numeri e per un massimo di 9!');
 		NumeroDocumento.focus();
 		return false;
 	}
+	
+
 }
+
+
 </script>
 </body>
 </html>
