@@ -243,6 +243,112 @@ public class VoloDAO {
 		}
 		return voli;
 	}
+	
+	
+	public synchronized ArrayList<Volo> doRetrieveByAereoportiEdataAndataERitorno(String AereoportoPartenza,String AereoportoDestinazione,String DataPartenza,String DataRitorno) {
+
+		ArrayList<Volo> voli = new ArrayList<Volo>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			Volo v;
+			conn = DriverManagerConnectionPool.getConnection();
+
+			String sql = "SELECT * FROM `volo` WHERE (aeroportoPartenza=? and aeroportoDestinazione=? and dat=? ) and isDelete='false'";
+			ps = (PreparedStatement) conn.prepareStatement(sql);
+			ps.setString(1,AereoportoPartenza);
+			ps.setString(2,AereoportoDestinazione);
+			ps.setString(3, DataPartenza);
+			rs = ps.executeQuery();
+			
+
+			while (rs.next()) {
+				v = new Volo();
+						v.setCodVolo(rs.getInt("codVolo"));
+						v.setAeroportoPartenza(rs.getString("aeroportoPartenza"));
+						v.setAeroportoDestinazione(rs.getString("aeroportoDestinazione"));
+						v.setData(rs.getString("dat")) ;
+						v.setOraPartenza(rs.getString("oraPartenza"));
+						v.setOraArrivo(rs.getString("oraArrivo"));
+						v.setNextDay(rs.getBoolean("isNextDay"));
+						v.setDurataVolo(rs.getString("durataVolo"));
+						v.setPrezzoEconomy(rs.getDouble("prezzoEconomy"));
+						v.setPrezzoBusiness(rs.getDouble("prezzoBusiness"));
+						v.setPrezzoPremium(rs.getDouble("prezzoPremium"));
+						v.setCod_aereo(rs.getInt("cod_aereo"));
+				
+				voli.add(v);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(conn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return voli;
+	}
+	
+	public synchronized ArrayList<Volo> doRetrieveByAereoportiEdataSoloAndata(String AereoportoPartenza,String AereoportoDestinazione,String DataPartenza) {
+
+		ArrayList<Volo> voli = new ArrayList<Volo>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			Volo v;
+			conn = DriverManagerConnectionPool.getConnection();
+
+			String sql = "SELECT * FROM `volo` WHERE (aeroportoPartenza=? and aeroportoDestinazione=? and dat=?) and isDelete='false'";
+			ps = (PreparedStatement) conn.prepareStatement(sql);
+			ps.setString(1,AereoportoPartenza);
+			ps.setString(2,AereoportoDestinazione);
+			ps.setString(3, DataPartenza);
+			rs = ps.executeQuery();
+			
+
+			while (rs.next()) {
+				v = new Volo();
+						v.setCodVolo(rs.getInt("codVolo"));
+						v.setAeroportoPartenza(rs.getString("aeroportoPartenza"));
+						v.setAeroportoDestinazione(rs.getString("aeroportoDestinazione"));
+						v.setData(rs.getString("dat"));
+						v.setOraPartenza(rs.getString("oraPartenza"));
+						v.setOraArrivo(rs.getString("oraArrivo"));
+						v.setNextDay(rs.getBoolean("isNextDay"));
+						v.setDurataVolo(rs.getString("durataVolo"));
+						v.setPrezzoEconomy(rs.getDouble("prezzoEconomy"));
+						v.setPrezzoBusiness(rs.getDouble("prezzoBusiness"));
+						v.setPrezzoPremium(rs.getDouble("prezzoPremium"));
+						v.setCod_aereo(rs.getInt("cod_aereo"));
+				
+				voli.add(v);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(conn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return voli;
+	}
+	
+	
+	
 	public synchronized Volo doRetriveByCod(int cod) {
 
 		Volo v=new Volo();

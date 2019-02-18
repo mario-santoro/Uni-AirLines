@@ -8,6 +8,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import model.Aereo;
+import model.Posto;
 
 
 
@@ -171,5 +172,42 @@ public synchronized ArrayList<Integer> availableAir(String data,String oraParten
 	return codici;
 }
 
+public synchronized ArrayList<Posto> getPostiPrenotabili(int codVolo){
+ArrayList<Posto> posti= new ArrayList<Posto>();
+			Connection conn = null;
+	PreparedStatement cmd = null;
+	Posto p;
+	try {
+		conn = DriverManagerConnectionPool.getConnection();
+
+		String sql ="SELECT tipologia,isPrenotato,postoprenotato.codPosto FROM `postoprenotato`join "
+				+ "posto on postoprenotato.codAereo=posto.codAereo and postoprenotato.codPosto=posto.numPosto WHERE codVolo=?";
+		cmd = (PreparedStatement) conn.prepareStatement(sql);
+		cmd.setInt(1, codVolo);
+		ResultSet res = cmd.executeQuery();
+		while(res.next()){
+			p=new Posto();
+		p.setNumPosto(res.getString("codPosto"));
+		p.setPrenotato(res.getBoolean("isPrenotato"));
+		p.setTipologia(res.getString("tipologia"));
+		posti.add(p);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			cmd.close();
+			DriverManagerConnectionPool.releaseConnection(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	
+	return posti;
+}
 
 }

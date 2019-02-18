@@ -1,9 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.VoloDAO;
-import model.Volo;
+import dao.AeroportoDAO;
+import model.Aeroporto;
+
 /**
- * Servlet implementation class AdminVisualizzaVoli
+ * Servlet implementation class InserimentoAeroporto
  */
-@WebServlet("/AdminVisualizzaVoli")
-public class AdminVisualizzaVoli extends HttpServlet {
+@WebServlet("/InserimentoAeroporto")
+public class InserimentoAeroporto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminVisualizzaVoli() {
+    public InserimentoAeroporto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,18 +31,7 @@ public class AdminVisualizzaVoli extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Volo> voli=new ArrayList<Volo>();
-		GregorianCalendar data=new GregorianCalendar();
-		String giorno = "" + data.get(Calendar.DAY_OF_MONTH);
-		String mese = "" + (data.get(Calendar.MONTH) + 1);
-		String anno = "" + data.get(Calendar.YEAR);
-		String dataV = anno+"-" + mese+"-"  + giorno;
-		String ora = data.get(Calendar.HOUR_OF_DAY) + ":" + data.get(Calendar.MINUTE) + ":"+ data.get(Calendar.SECOND);
-		VoloDAO vd= new VoloDAO();
-		voli=vd.showAll(dataV,ora);
-		request.getSession().setAttribute("voli", voli);
-		RequestDispatcher d= request.getRequestDispatcher("AdminPannello.jsp");
-			d.forward(request, response);
+		
 	}
 
 	/**
@@ -53,6 +40,13 @@ public class AdminVisualizzaVoli extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		String s = request.getParameter("aeroportonew");
+		Aeroporto a = new Aeroporto(s);
+		AeroportoDAO a1 = new AeroportoDAO();
+		a1.doSave(a);
+		RequestDispatcher d= request.getRequestDispatcher("AdminPannello.jsp");
+		d.forward(request, response);
+		
 	}
 
 }

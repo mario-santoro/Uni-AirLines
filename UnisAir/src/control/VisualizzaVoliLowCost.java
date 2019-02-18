@@ -45,25 +45,32 @@ public class VisualizzaVoliLowCost extends HttpServlet {
 		String ora = data.get(Calendar.HOUR_OF_DAY) + ":" + data.get(Calendar.MINUTE) + ":"+ data.get(Calendar.SECOND);
 		l=vd.showAllLowCost(dataV, ora);
 		response.getWriter().append("[");
-		int i;
+		int i=0;
 		
-		double minorPrezzo=0;
-		double sconto=0;
-		for ( i = 0; i < l.size()-1; i++) {
+		double minorPrezzo=0.00;
+		double sconto=0.00;
+		
+		for ( i = 0; i < l.size(); i++) {
 			minorPrezzo= l.get(i).getPrezzoEconomy()*l.get(i).getQuant();
 			
 			sconto= (minorPrezzo*l.get(i).getPercentuale())/100;
 			minorPrezzo= minorPrezzo- sconto;
-			response.getWriter().append("{\"nome\":\""+l.get(i).getNome()+"\",\"prezzo\":\""+minorPrezzo+"\",\"immagine\":\""+l.get(i).getImg()+"\",\"quant\":\""+l.get(i).getQuant()+"\",\"codVolo\":\""+l.get(i).getCodVolo()+"\"},");
+			double val = minorPrezzo*100;
+			val = (double)((int) val);
+			minorPrezzo = val /100;
+		
+			if(i==l.size()-1){
 
+				response.getWriter().append("{\"nome\":\""+l.get(i).getNome()+"\",\"prezzo\":\""+minorPrezzo+"\",\"immagine\":\""+l.get(i).getImg()+"\",\"quant\":\""+l.get(i).getQuant()+"\",\"codVolo\":\""+l.get(i).getCodVolo()+"\"}");
+			
+				
+			}else{
+			response.getWriter().append("{\"nome\":\""+l.get(i).getNome()+"\",\"prezzo\":\""+minorPrezzo+"\",\"immagine\":\""+l.get(i).getImg()+"\",\"quant\":\""+l.get(i).getQuant()+"\",\"codVolo\":\""+l.get(i).getCodVolo()+"\"},");
+			}
 			
 		}
-		if( i>0){
-		minorPrezzo= l.get(i).getPrezzoEconomy()*l.get(i).getQuant();
-		sconto= (minorPrezzo*l.get(i).getPercentuale())/100;
-		minorPrezzo= minorPrezzo- sconto;
-		response.getWriter().append("{\"nome\":\""+l.get(i).getNome()+"\",\"prezzo\":\""+minorPrezzo+"\",\"immagine\":\""+l.get(i).getImg()+"\",\"quant\":\""+l.get(i).getQuant()+"\",\"codVolo\":\""+l.get(i).getCodVolo()+"\"}");
-		}
+
+
 		
 		response.getWriter().append("]");
 	}

@@ -174,7 +174,10 @@ public class Prenotazione {
 	public void setPasseggeri(Passeggero p) {
 		passeggeri.add(p);
 	}
-
+	
+	public void setPasseggeri(ArrayList<Passeggero> passeggeri) {
+		this.passeggeri = passeggeri;
+	}
 
 	public int getNumBagagliTot() {
 		return numBagagliTot;
@@ -184,6 +187,8 @@ public class Prenotazione {
 	public void setNumBagagliTot(int numBagagliTot) {
 		this.numBagagliTot = numBagagliTot;
 	}
+
+
 	
 	
 	

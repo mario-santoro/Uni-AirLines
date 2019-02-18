@@ -97,7 +97,7 @@ public class UtenteDAO {
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 
-			String sql = " UPDATE utente SET nome=?,cognome=?,passw=?,num_doc=?,tipo_doc=?,numCartaCredito=?,scadenzaCarta=?,CVV_CVC=? where email=?";
+			String sql = " UPDATE utente SET nome=?,cognome=?,passw=?,num_doc=?,tipo_doc=? where email=?";
 			cmd = (PreparedStatement) conn.prepareStatement(sql);
 			cmd.setString(1, u1.getEmail());
 			cmd.setString(2, u1.getPassword());
@@ -105,9 +105,6 @@ public class UtenteDAO {
 			cmd.setString(4, u1.getCognome());
 			cmd.setString(5, u1.getTipoDocumento());
 			cmd.setString(6, u1.getNumDocumento());
-			cmd.setLong(7, u1.getNumCartaCredito());
-			cmd.setString(8, u1.getScadenzaCarta());
-			cmd.setInt(9, u1.getCVC());
 			cmd.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

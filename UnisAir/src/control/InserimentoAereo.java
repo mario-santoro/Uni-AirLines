@@ -45,9 +45,9 @@ public class InserimentoAereo extends HttpServlet {
 		doGet(request, response);
 
 		int e,b,p;
-		e=Integer.parseInt(request.getParameter("economy"));
-		b=Integer.parseInt(request.getParameter("business"));
-		p=Integer.parseInt(request.getParameter("premium"));
+		e=5;
+		b=3;
+		p=1;
 		Aereo a=new Aereo();
 	int i,j,count=0;
 		ArrayList <Posto> posti= new ArrayList<Posto>();
