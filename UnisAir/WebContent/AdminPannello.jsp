@@ -36,6 +36,12 @@
     function offval() {
         document.getElementById("overlay3").style.display = "none";
         }
+    function onAeroporto() {
+        document.getElementById("overlay4").style.display = "block";
+        }
+    function off4() {
+        document.getElementById("overlay4").style.display = "none";
+        }
 
     </script>
 </head>
@@ -76,7 +82,7 @@
 				<br> 
 				<span class="special">Per persone n:</span> <input id="campoNum"  name="quant" type="number" value="1" min="1" max="5" required>  
 				<br> 
-				<span class="special">Nome Città:</span> <input id="campoNum"  name="nome" type="text" placeholder="inserisci città destinazione" required>  
+				<span class="special">Nome Città:</span> <input id="nomeCitta"  name="nome" type="text" placeholder="inserisci città destinazione" required>  
 				<br> 
 				<input type="number" name="cod" id="cod" hidden="true">
 			</div>
@@ -87,6 +93,30 @@
 			</form>
 		</div>
 	</div>
+	
+	
+	<div id="overlay4">
+		<div id="popOfferta4">
+		<span class="glyphicon glyphicon-remove" onclick="off4()"></span>
+			<h2>Inserisci Aeroporto</h2>
+				<form action="InserimentoAeroporto" method="post">
+			<div class="popContent">
+		
+				
+				
+				<span class="special">Nome Aeroporto:</span> 
+				<input id="campoNum"  name="aeroportonew" type="text" placeholder="inserisci aeroporto" required>  
+				<br> 
+				<input type="number" name="cod" id="cod" hidden="true">
+			</div>
+			<div id="btnContent">
+				<input class="btnR" value="Conferma" type="submit" >
+				
+			</div>
+			</form>
+		</div>
+	</div>
+	
 
 <div id="overlay3">
         <div id="accessoerrato">
@@ -149,12 +179,7 @@
 				<br>
 				<span class="special">Nome aereo: </span>  <input id="NomeAereo" name="nome" type="text" required>
 				<br>
-				<span class="special">File per Premium: </span>  <input id="PostiPerPremium" name="premium" type="number" value="1" min="1" max="3" >
-				<br> 
-				<span class="special">File per Business: </span> <input id="PostiPerBusiness" name="business" type="number" value="3" min="3" max="5" >  
-				<br> 
-				<span class="special">File per Economy: </span> <input id="PostiPerEconomy" name="economy" type="number" value="5" min="5" max="8" >  
-				<br> 
+				
 			</div>
 			<div id="btnContent">
 				<input class="btnR" value="Conferma" type="submit" >
@@ -172,6 +197,7 @@
 				<h2>INSERIMENTO</h2>
 				<span class="labelAside"><a href="AdminInsVolo.jsp"><span class="glyphicon glyphicon-plus"></span><span class="textLabel">Volo</span></a></span> <!-- c'è la pagina fai il collegamento -->
 				<span class="labelAside" onclick="onAereo()"><span class="glyphicon glyphicon-plus"></span><span class="textLabel">Aereo</span></span> <!-- c'è la pagina fai il collegamento -->
+				<span class="labelAside" onclick="onAeroporto()"><span class="glyphicon glyphicon-plus"></span><span class="textLabel">Aeroporto</span></span> <!-- c'è la pagina fai il collegamento -->
 		</aside>
 	<div id="corpo">
 	<%if(voli.size()==0){ %><h2 class="vuoto">Non ci sono voli disponibili al momento</h2><%} %>

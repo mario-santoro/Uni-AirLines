@@ -70,19 +70,7 @@
 						<td align="right"><label>Aeroporto di partenza: </label></td>
 						<td align="left"><select id="ARpartenza" name="ARpartenza">
 								<option value="<%=v.getAeroportoPartenza()%>" selected><%=v.getAeroportoPartenza()%></option>
-								<option value="RomaCiampino">Roma Ciampino</option>
-								<option value="RomaFiumicino">Roma Fiumicino</option>
-								<option value="NapoliCapodichino">Napoli Capodichino</option>
-								<option value="MilanoLinate">Milano Linate</option>
-								<option value="TorinoCaselle">Torino Caselle</option>
-								<option value="BolognaMarconi">Bologna Marconi</option>
-								<option value="PisaGalileoGalilei">Pisa Galileo Galilei</option>
-								<option value="">Heathrow di Londra</option>
-								<option value="">Charles de Gaulle di Parigi</option>
-								<option value="">Schiphol di Amsterdam</option>
-									<option value="Praga-Ruzyne" >Praga-Ruzyne</option>
-									<option value="Budapest-Ferihegy">Budapest-Ferihegy</option>
-									<option value="Cairo International Airport">Cairo International Airport</option>
+								
 
 						</select></td>
 					</tr>
@@ -90,19 +78,7 @@
 						<td align="right"><label>Aeroporto di arrivo: </label></td>
 						<td align="left"><select id="ARarrivo" name="ARarrivo">
 								<option value="<%=v.getAeroportoDestinazione()%>" selected><%=v.getAeroportoDestinazione()%></option>
-								<option value="RomaCiampino">Roma Ciampino</option>
-								<option value="RomaFiumicino">Roma Fiumicino</option>
-								<option value="NapoliCapodichino">Napoli Capodichino</option>
-								<option value="MilanoLinate">Milano Linate</option>
-								<option value="TorinoCaselle">Torino Caselle</option>
-								<option value="BolognaMarconi">Bologna Marconi</option>
-								<option value="PisaGalileoGalilei">Pisa Galileo Galilei</option>
-								<option value="">Heathrow di Londra</option>
-								<option value="">Charles de Gaulle di Parigi</option>
-								<option value="">Schiphol di Amsterdam</option>
-									<option value="Praga-Ruzyne" >Praga-Ruzyne</option>
-									<option value="Budapest-Ferihegy">Budapest-Ferihegy</option>
-									<option value="Cairo International Airport">Cairo International Airport</option>
+								
 						</select></td>
 					</tr>
 					<tr>
@@ -269,6 +245,8 @@
 
 	<script type="text/JavaScript" src="js/jsTemplate.js"></script>
 	<script>
+
+ 
 	function validateAereoporti(){
 		
 		var Partenza = document.getElementById("ARpartenza");
@@ -363,7 +341,12 @@
 				             });
 				         });
 			 
-			 
+			    $.post("DaiAeroporto",function(data){
+
+			        $('#ARpartenza').append(data);
+			        $('#ARarrivo').append(data);
+
+			    });
 			 $( "#giornodopo" ).click(function() {
 				 
 				

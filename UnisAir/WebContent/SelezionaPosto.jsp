@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	 <%@page import="model.Utente"%>
+	 	 <%@page import="model.Prenotazione"%>
+	 	  <%@page import="java.util.ArrayList"%>
+<%@page import="model.Posto"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,39 +32,54 @@
 
 <script>
 function Avvertimento() {
-  alert("tornando indietro cancelli tutto");
+  alert("tornando indietro la ricerca verrà annullata");
+  window.location = "http://localhost:8080/UnisAir/index.jsp";
 }
 </script>
 </head>
 <body>
+<%Utente u=(Utente)session.getAttribute("userBean");%>
+<%Prenotazione pA=(Prenotazione)session.getAttribute("prenotazioneA");%>
+<%Prenotazione pR=(Prenotazione)session.getAttribute("prenotazioneR");%>
+<%ArrayList<Posto> postiA = (ArrayList<Posto>) session.getAttribute("postiA");%>
+<%ArrayList<Posto> postiR = (ArrayList<Posto>) session.getAttribute("postiR");%>
+	
 	<!-- NAVBAR -->
 	<nav>
-		<a> <img src="img/logo.png" width="200" height="100" alt="">
-		</a> <a> <span class="l">Accedi</span>
-		</a>
-		<div id="menu">
-			Email:<br> <input class="campo-login" type="text"
-				placeholder="E-mail"><br> Password:<br> <input
-				class="campo-login" type="text" placeholder="Password"><br>
-			<input class="btnR" type="submit" value="Accedi">
-			<p>Non sei ancora registrato?</p>
-			<a href="#" class="link">Registrati!</a>
-		</div>
+  <a href="index.jsp">
+    <img src="img/logo.png" width="200" height="100" alt="">
+  </a>
 
+   <a>
+       <span class="l"><span class="glyphicon glyphicon-user"></span>
+							<%=u.getNome() %></span> 
+      </a>
+     <div id="menu">
+          <div id="contenutimenu">
+        <a href="Storico" class="link">Storico</a>
+        <br>
 
-	</nav>
+        <a href="#" class="link">Modifica dati</a>
+        <br>
 
+        <a href="Logout" class="link">Logout</a>
+     </div>
+     </div>
+
+    
+  
+</nav>
 
 	
 
 	<div id="contenitore">
 	
-	<div id="legenda">
+	<div class="legenda">
 		<h2>Legenda sovrapprezzi classi di viaggio</h2>
 		<br>
-		<h3>Premium: <span class="special">+50&euro;</span></h3>
+		<h3>Premium: <span class="special">+<%=pA.getVolo().getPrezzoPremium()-pA.getVolo().getPrezzoEconomy() %>&euro;</span></h3>
 		<br>
-		<h3>Business: <span class="special">+20&euro;</span></h3>
+		<h3>Business: <span class="special">+<%=pA.getVolo().getPrezzoBusiness()-pA.getVolo().getPrezzoEconomy() %>&euro;</span></h3>
 		<br>
 		<h3>Economy: <span class="special">+0&euro;</span></h3>
 		<br>
@@ -73,29 +92,25 @@ function Avvertimento() {
 	
 	<div class="infooff">
 		<h2>
-			Seleziona posto per il volo <span id="volo">Volo</span>
+			Seleziona posto per il volo  di andata
 		</h2>
 	</div>
-		<div id="aereo">
+		<div class="aereo">
 		
 		
 			<br> <span class="tipologiaPosto">PREMIUM</span>
 			<hr color="white">
-			<%!public static char printChar(int numP){
-			int mod=numP%21;
-			mod+=65;
-			
-			char lettera=(char)mod;
-			
-			return lettera;
-		} %>
+		
 			<%int i=0, p=0;
-		for( i=0;i<3;i++){ 
+		for( i=0;i<1;i++){ 
 		for(p=0;p<6;p++){
 		%>
-
-			<button class="btnPrenota" type="button" onclick=""><%=printChar(i)  %><%=p+1 %></button>
-			<%if(p==2) {%>
+			<%if(postiA.get(p).isPrenotato()){ %>
+			<button class="btnPrenota" type="button" style="background-color:red;" disabled><%=postiA.get(p).getNumPosto() %></button>
+			<%}else{ %>
+			<button class="btnPrenota" type="button" onclick="scelgoPosto(<%=pA.getNumBiglietti()%>,<%=pA.getVolo().getPrezzoPremium()-pA.getVolo().getPrezzoEconomy() %>,<%=p%>,this)"><%=postiA.get(p).getNumPosto() %></button>
+			<%} %>
+			<%if(p%6==2) {%>
 			<span class="tipologiaPosto"><%=i+1 %></span>
 			<%}} %>
 
@@ -106,11 +121,14 @@ function Avvertimento() {
 
 			<br> <span class="tipologiaPosto">BUSINESS</span>
 			<hr color="white">
-			<%for(;i<8;i++){for(p=0;p<6;p++){
+			<%for(;i<4;i++){for(;p<24;p++){
 			%>
-
-			<button class="btnPrenota" type="button" onclick=""><%=printChar(i)  %><%=p+1 %></button>
-			<%if(p==2) {%>
+<%if(postiA.get(p).isPrenotato()){ %>
+			<button class="btnPrenota" type="button" style="background-color:red;" disabled><%=postiA.get(p).getNumPosto() %></button>
+			<%}else{ %>
+			<button class="btnPrenota" type="button" onclick="scelgoPosto(<%=pA.getNumBiglietti()%>,<%=pA.getVolo().getPrezzoBusiness()-pA.getVolo().getPrezzoEconomy() %>,<%=p%>,this)"><%=postiA.get(p).getNumPosto() %></button>
+			<%} %>
+			<%if(p%6==2) {%>
 			<span class="tipologiaPosto"><%=i+1 %></span>
 			<%}} %>
 
@@ -119,11 +137,14 @@ function Avvertimento() {
 
 			<br> <span class="tipologiaPosto">ECONOMY</span>
 			<hr color="white">
-			<%for(;i<18;i++){for(p=0;p<6;p++){
+			<%for(;i<9;i++){for(;p<54;p++){
 			%>
-
-			<button class="btnPrenota" type="button" onclick=""><%=printChar(i)  %><%=p+1 %></button>
-			<%if(p==2) {%>
+<%if(postiA.get(p).isPrenotato()){ %>
+			<button class="btnPrenota" type="button" style="background-color:red;" disabled><%=postiA.get(p).getNumPosto() %></button>
+			<%}else{ %>
+			<button class="btnPrenota" type="button" onclick="scelgoPosto(<%=pA.getNumBiglietti()%>,0,<%=p%>,this)"><%=postiA.get(p).getNumPosto() %></button>
+			<%} %>
+			<%if(p%6==2)  {%>
 			<span class="tipologiaPosto"><%=i+1 %></span>
 			<%}} %>
 
@@ -131,25 +152,124 @@ function Avvertimento() {
 			<%} %>
 		</div>
 		<br>
-		<div id="prezzoAttuale">
+		<div class="prezzoAttuale">
 		
 		<h3>
-		Prezzo base: <span id="prezzobase" class="special"> tanti&euro;</span>
+		Prezzo base: <span id="prezzobase" class="special"> <%=pA.getVolo().getPrezzoEconomy()*pA.getNumBiglietti()%></span>&euro;
 		<br>
 		<br>
-		Sovrapprezzo posti: <span id="sovrapprezzo" class="special"> piu' tanti&euro;</span>
+		Sovrapprezzo posti: +<span id="sovrapprezzo" class="special"> 0</span>&euro;
 		<br>
 		<br>
-		Totale: <span id="totale" class="special"> un botto&euro;</span>
+		Totale: <span id="totale" class="special"><%=pA.getVolo().getPrezzoEconomy()*pA.getNumBiglietti()%></span>&euro;
 		</h3>
 		<br>
 		<button class="btnR"  onCLick="Avvertimento()" >Indietro</button>
-		<button class="btnR"  >Continua</button>
+		<button class="btnR" onClick="continua(<%=pA.getNumBiglietti()%>)" >Continua</button>
 	</div>
 		
 	</div>
 
 
+<%if(pR!=null){ %>
+
+<div id="contenitoreRitorno">
+	
+	<div class="legenda">
+		<h2>Legenda sovrapprezzi classi di viaggio</h2>
+		<br>
+		<h3>Premium: <span class="special">+<%=pR.getVolo().getPrezzoPremium()-pR.getVolo().getPrezzoEconomy() %>&euro;</span></h3>
+		<br>
+		<h3>Business: <span class="special">+<%=pR.getVolo().getPrezzoBusiness()-pR.getVolo().getPrezzoEconomy() %>&euro;</span></h3>
+		<br>
+		<h3>Economy: <span class="special">+0&euro;</span></h3>
+		<br>
+		<h3>Posto Libero: </h3><button class="btnPrenotalegendalib" type="button" >Z1</button>
+		<br>
+		<h3>Posto Occupato: </h3><button class="btnPrenotalegendaocc" type="button" >Z1</button>
+	</div>
+	<br>
+	
+	
+	<div class="infooff">
+		<h2>
+			Seleziona posto per il volo  di ritorno
+		</h2>
+	</div>
+		<div class="aereo">
+		
+		
+			<br> <span class="tipologiaPosto">PREMIUM</span>
+			<hr color="white">
+		
+			<% p=0;
+		for( i=0;i<1;i++){ 
+		for(p=0;p<6;p++){
+		%>
+			<%if(postiR.get(p).isPrenotato()){ %>
+			<button class="btnPrenotaR" type="button" style="background-color:red;" disabled><%=postiR.get(p).getNumPosto() %></button>
+			<%}else{ %>
+			<button class="btnPrenotaR" type="button" onclick="scelgoPostoR(<%=pR.getNumBiglietti()%>,<%=pR.getVolo().getPrezzoPremium()-pR.getVolo().getPrezzoEconomy() %>,<%=p%>,this)"><%=postiR.get(p).getNumPosto() %></button>
+			<%} %>
+			<%if(p%6==2) {%>
+			<span class="tipologiaPosto"><%=i+1 %></span>
+			<%}} %>
+
+
+			<%} %>
+
+
+
+			<br> <span class="tipologiaPosto">BUSINESS</span>
+			<hr color="white">
+			<%for(;i<4;i++){for(;p<24;p++){
+			%>
+<%if(postiR.get(p).isPrenotato()){ %>
+			<button class="btnPrenotaR" type="button" style="background-color:red;" disabled><%=postiR.get(p).getNumPosto()%></button>
+			<%}else{ %>
+			<button class="btnPrenotaR" type="button" onclick="scelgoPostoR(<%=pR.getNumBiglietti()%>,<%=pR.getVolo().getPrezzoBusiness()-pR.getVolo().getPrezzoEconomy() %>,<%=p%>,this)"><%=postiR.get(p).getNumPosto() %></button>
+			<%} %>
+			<%if(p%6==2) {%>
+			<span class="tipologiaPosto"><%=i+1 %></span>
+			<%}} %>
+
+
+			<%} %>
+
+			<br> <span class="tipologiaPosto">ECONOMY</span>
+			<hr color="white">
+			<%for(;i<9;i++){for(;p<54;p++){
+			%>
+<%if(postiR.get(p).isPrenotato()){ %>
+			<button class="btnPrenotaR" type="button" style="background-color:red;" disabled><%=postiR.get(p).getNumPosto() %></button>
+			<%}else{ %>
+			<button class="btnPrenotaR" type="button" onclick="scelgoPostoR(<%=pR.getNumBiglietti()%>,0,<%=p%>,this)"><%=postiR.get(p).getNumPosto() %></button>
+			<%} %>
+			<%if(p%6==2)  {%>
+			<span class="tipologiaPosto"><%=i+1 %></span>
+			<%}} %>
+
+
+			<%} %>
+		</div>
+		<br>
+		<div class="prezzoAttuale">
+		
+		<h3>
+		Prezzo base: <span id="prezzobaseR" class="special"> <%=pR.getVolo().getPrezzoEconomy()*pR.getNumBiglietti()%></span>&euro;
+		<br>
+		<br>
+		Sovrapprezzo posti: +<span id="sovrapprezzoR" class="special"> 0</span>&euro;
+		<br>
+		<br>
+		Totale: <span id="totaleR" class="special"><%=pR.getVolo().getPrezzoEconomy()*pR.getNumBiglietti()%></span>&euro;
+		</h3>
+		<br>
+		<button class="btnR"  onCLick="Avvertimento()" >Indietro</button>
+		<button class="btnR" onClick="continuaR(<%=pR.getNumBiglietti()%>)" >Continua</button>
+	</div>
+		
+	</div>
 
 	<footer>
 		<div id="imgContent">
@@ -193,8 +313,118 @@ function Avvertimento() {
 				href="#">Infotmazioni legali</a></span> <span class="info"><a
 				href="#">Informativa sulla privacy</a></span>
 		</div>
+		<%} %>
 	</footer>
+<script type="text/javascript">
+var bas=document.getElementById("prezzobase").innerHTML*1;
 
+var sov = document.getElementById("sovrapprezzo").innerHTML*1;
+
+var tot=bas+sov;
+
+document.getElementById("totale").innerHTML=tot;
+var count=0;
+var countR=0;
+var stringa = "";
+var x = document.getElementsByClassName("btnPrenota");
+var xR = document.getElementsByClassName("btnPrenotaR");
+var a=[];
+var r=[];
+function scelgoPosto(persone,prezzo,index,codice){
+	
+	count++;
+	if(count<=persone){
+		 x[index].style.background= "yellow";
+		 x[index].disabled="false";
+		var sov = document.getElementById("sovrapprezzo").innerHTML*1;
+		var tot = document.getElementById("totale").innerHTML*1;
+	
+		sov=(sov+prezzo);
+		document.getElementById("sovrapprezzo").innerHTML=sov;
+		 tot=(tot+prezzo);
+
+		document.getElementById("totale").innerHTML=tot;
+	
+		a.push(codice.innerHTML);
+	}
+}
+function scelgoPostoR(persone,prezzo,index,codice){
+	countR++;
+	if(countR<=persone){
+		 xR[index].style.background= "yellow";
+		 xR[index].disabled="false";
+		var sov = document.getElementById("sovrapprezzoR").innerHTML*1;
+		var totR = document.getElementById("totaleR").innerHTML*1;
+		sov=(sov+prezzo);
+		document.getElementById("sovrapprezzoR").innerHTML=sov;
+		 totR=(totR+prezzo);
+
+		document.getElementById("totaleR").innerHTML=totR;
+	
+	r.push(codice.innerHTML);
+	}
+}
+
+function continua(persona){
+	if(count>=persona){
+		  var n = a.length;
+		     var i = 0;
+		     var j = 0;
+		  
+		     for(i = 0;i<n;i++){
+		             
+		                stringa= stringa+"stringa="+a[i]+"&";
+		          
+		         
+		     }
+		     stringa = stringa.substring(0, stringa.length - 1);
+		    
+	<%String Checked=(String) session.getAttribute("Andata/Ritorno");
+	
+	if(Checked.equals("a/r")){%>
+		{	
+			var tot = document.getElementById("totale").innerHTML*1;
+			var baseR = document.getElementById("prezzobaseR").innerHTML*1;	
+	baseR+=tot;
+	 document.getElementById("prezzobaseR").innerHTML=baseR;
+			document.getElementById("totaleR").innerHTML=baseR;
+			
+			
+			document.getElementById("contenitore").style.display="none";
+			document.getElementById("contenitoreRitorno").style.display="block";
+		}
+		<%}else{%>
+		
+	   
+	window.location = "http://localhost:8080/UnisAir/SalvaPosti?"+stringa;
+		<%}%>
+		
+	}else{
+		alert("non hai selezionato i posti");
+	}
+}
+function continuaR(persona){
+	if(countR>=persona){
+		 var n = r.length;
+	     var i = 0;
+	     var j = 0;
+	     var stringaR = "";
+	     for(i = 0;i<n;i++){
+	             
+	                stringaR= stringaR+"stringaR="+r[i]+"&";
+	          
+	         
+	     }
+	     stringaR = stringaR.substring(0, stringaR.length - 1);
+	window.location = "http://localhost:8080/UnisAir/SalvaPosti?"+stringa+"&"+stringaR;
+		
+	}else{
+		
+		alert("non hai selezionato i posti")
+	}
+}
+
+</script>
 
 	<script type="text/JavaScript" src="js/jsTemplate.js"></script>
 </body>

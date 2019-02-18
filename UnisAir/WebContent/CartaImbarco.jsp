@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@page import="java.util.ArrayList"%>
+<%@page import="model.Passeggero"%>
+<%@page import="model.Prenotazione"%>
+<%@page import="model.Utente"%>
+<%@page import="model.Posto"%>
+<%@page import="dao.PostoDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,33 +32,75 @@
 <link rel="stylesheet" href="css/CartaImbarco.css" type="text/css">
 </head>
 <body>
+<%
+ArrayList<Passeggero> passeggeriVolo = (ArrayList<Passeggero>)request.getSession().getAttribute("passeggeriVolo");
+Prenotazione prenotazione = (Prenotazione)request.getSession().getAttribute("prenotazione");
+Posto posto = new Posto();
+PostoDAO postoDAO = new PostoDAO();
+Boolean check = true;
+session.setAttribute("check", check);
+%>
+
+<%Utente u=(Utente)session.getAttribute("userBean");
+String path=request.getServletPath();	
+session.setAttribute("path", path); %>
 	<!-- NAVBAR -->
 	<nav>
-		<a> <img src="img/logo.png" width="200" height="100" alt="">
-		</a> <a> <span class="l">Accedi</span>
-		</a>
-		<div id="menu">
-			Email:<br> <input class="campo-login" type="text"
-				placeholder="E-mail"><br> Password:<br> <input
-				class="campo-login" type="text" placeholder="Password"><br>
-			<input class="btnR" type="submit" value="Accedi">
-			<p>Non sei ancora registrato?</p>
-			<a href="#" class="link">Registrati!</a>
-		</div>
+  <a href="index.jsp">
+    <img src="img/logo.png" width="200" height="100" alt="">
+  </a>
+  <%if(u!=null){ %>
+   <a>
+       <span class="l"><span class="glyphicon glyphicon-user"></span>
+							<%=u.getNome() %></span> 
+      </a>
+     <div id="menu">
+          <div id="contenutimenu">
+        <a href="VisualizzaPrenotazioni" class="link">Storico</a>
+        <br>
 
+        <a href="ModificaUtente.jsp" class="link">Modifica dati</a>
+        <br>
 
-	</nav>
+        <a href="Logout" class="link">Logout</a>
+     </div>
+     </div>
+  <%}else{ %>
+      <a>
+       <span class="l">Accedi</span> 
+      </a>
+      <div id="menu">
+      <form action="Login" method="post">
+        Email:<br>
+        <input class="campo-login"  type="text" name="email" placeholder="E-mail"><br>
+        Password:<br>
+        <input class="campo-login" type="password" name="psw" placeholder="Password"><br>
+        <input class="btnR" type="submit" value="Accedi">
+        </form>
+       	<p>Non sei ancora registrato?</p>
+       	<a href="Registrazione.jsp" class="link">Registrati!</a>
+       	   </div>
+       	<%} %>
+   
+    
+  
+</nav>
 
 	<div class="infoVolo">
 		<h2>
-			Stampa carta di imbarco per il volo <span id="numvolo"> 000000 </span> da <span id="partenza"> aeroporto </span> a <span
-				id="arrivo"> aeroporto </span> <br> nel giorno <span
-				id="data_partenza"> 00/00/00 </span> 
+			Stampa carta di imbarco per il volo <span id="numvolo"><%=prenotazione.getVolo().getCodVolo() %></span> da <span id="partenza"> <%=prenotazione.getVolo().getAeroportoPartenza() %> </span> a <span
+				id="arrivo"> <%=prenotazione.getVolo().getAeroportoDestinazione() %></span> <br> nel giorno <span
+				id="data_partenza"> <%=prenotazione.getVolo().getData() %></span> 
 		</h2>
 	</div>
 	
 
-				
+	<%
+	int i = 0;
+	for(Passeggero p : prenotazione.getPasseggeri()){
+		posto = postoDAO.doRetrieveByKey(p.getPosto() , prenotazione.getVolo().getCod_aereo());
+		String tipologia = posto.getTipologia();
+	%>		
 	<div id="dettagliVolo" style=" background:  linear-gradient(to bottom right,rgba(250,120,0,0.7),rgba(250,150,0,0.7)) , url(img/logo.png) ; background-repeat: no-repeat;  background-size: contain;">
 		
 		<div class="bordisup">
@@ -61,19 +109,19 @@
 
 		<div class="dettagliVoloAeroporto">
 			<h2 class="biglietto">
-				Volo numero: <span id="numVolo"> 555566698</span> <br> <br>
+				Volo numero: <span id="numVolo"><%=prenotazione.getVolo().getCodVolo() %></span> <br> <br>
 				Gate <span id="gate"> C66</span> <br>
-				<br> Ora di partenza: <span id="orpar"> 00:00</span> <br>
-				<br> Ora di arrivo: <span id="orarr"> 03:35</span>
+				<br> Ora di partenza: <span id="orpar"> <%=prenotazione.getVolo().getOraPartenza() %></span> <br>
+				<br> Ora di arrivo: <span id="orarr">  <%=prenotazione.getVolo().getOraArrivo()%></span>
 			</h2>
 		</div>
 
 	<div class="dettagliVoloPosto">
 			<h2 class="biglietto">
-				Nome: <span id="nomePass"> Tiziano</span> <br> <br> 
-				Cognome: <span id="cognomePass"> Ferro</span> <br> 
-				<br> Posto <span id="Posto"> A6</span> <br>
-				<br> Classe <span id="ClasseViaggio"> Premium</span>
+				Nome: <span id="nomePass"><%=passeggeriVolo.get(i).getNome() %></span> <br> <br> 
+				Cognome: <span id="cognomePass"><%=passeggeriVolo.get(i).getCognome() %></span> <br> 
+				<br> Posto <span id="Posto"><%=p.getPosto() %></span> <br>
+				<br> Classe <span id="ClasseViaggio"> <%=tipologia %></span>
 		</h2>
 		</div>
 			
@@ -82,7 +130,10 @@
 		<input class="btnStampa" type="submit" value="Stampa">
 	</div>	
 	</div>
-
+<%
+	i++;
+} 
+%>
 
 
 

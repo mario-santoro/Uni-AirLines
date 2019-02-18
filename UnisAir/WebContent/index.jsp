@@ -24,16 +24,22 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript">
 	  
 	  $(document).ready(function(){ 
-	
+		  
+
+	            $.post("DaiAeroporto",function(data){
+
+	                $('#ARpartenza').html(data);
+	                $('#ARarrivo').html(data);
+
+	            });
 		  $.get("VisualizzaVoliLowCost", function(data, status){
 				    Low(data);
 						});
 
 				function Low(data) {
-					var i;
+					var i=0;
 					 var data = JSON.parse(data);
 					  var s="";
-					
 					  for (i = 0; i <data.length; i++) { 
 						
 						s+=" <div class=\"annuncio\"><a href=\"VisualizzaOfferta?codVolo="+data[i].codVolo+"\">"+
@@ -41,7 +47,6 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 								data[i].nome +"</div> <div class=\"prezzo\">da "+data[i].prezzo+"&euro;</div></a></div>";
 					  
 					}
-				
 					  if(i==0){
 						 
 						  s+="<h2> Non ci sono voli Low Cost disponibili al momento</h2>"
@@ -56,16 +61,29 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 			var denied="${denied}"
 			if(denied=="true"){
 				
+				      document.getElementById("menu").style.display = "block";
 				      document.getElementById("overlay3").style.display = "block";
-				    
 
 				
 			}
 	});
 	function offErr() {
+		document.getElementById("menu").style.display = "none";
 		document.getElementById("overlay3").style.display = "none";
 		}
+	function validate(){
 
+	       var Partenza = document.getElementById("ARpartenza");
+
+	       var Arrivo = document.getElementById("ARarrivo");
+	       if (Partenza.options[Partenza.selectedIndex].value != Arrivo.options[Arrivo.selectedIndex].value){
+	           return true;
+	       }else{
+	           alert('Gli areoporti di partenza ed arrivo devono essere diversi!');
+
+	           return false;
+	       }
+	   }
 	  
 			
 	</script>
@@ -130,6 +148,7 @@ session.setAttribute("path", path); %>
 		
 	</div>
 
+
 <!-- Carusel per le immagini -->
 <div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -170,21 +189,23 @@ session.setAttribute("path", path); %>
 <!-- form di ricerca -->
 <div id="ricerca">
 		
-			<form action="#" >
+			<form id="RicercaVolo" method="post" action="RicercaVolo" onSubmit="return validate()">
 			<input type="radio" id="rad1" name="a/r" value="a/r" checked="checked"> <span class="rad">Andata e ritorno</span> 
 			 <input type="radio" id="rad2" name="a/r" value="a"> <span class="rad">Solo andata</span><br>
 			 <div class="separetor">
 				 Aereoporto di partenza<br>
-				<input class="campo" type="text" placeholder="aereoporto di partenza" required>
+				<select id="ARpartenza" name="ARpartenza" class="campo">
+								</select>
 			</div>
 			<div class="separetor">
 				Aereoporto di destinazione<br>
-				<input class="campo" type="text" placeholder="aereoporto di destinazione" required>
+				<select id="ARarrivo" name="ARarrivo" class="campo" >
+						</select>
 			</div>
 			<br>
 			<div class="separetor">
 				Data partenza<br>
-				<input class="campo" onchange="dat()" id="datPartenza"  type="date" required>
+				<input class="campo" onchange="dat()" id="datPartenza" name="dataPartenzaVolo" type="date" required>
 			</div>
 			<div class="separetor">
 				Data ritorno<br>
@@ -211,6 +232,7 @@ session.setAttribute("path", path); %>
 
 			<input type="submit" class="btnR" value="Ricerca">
 			</form>
+	
 	
 </div>
 <!-- Offerte -->
@@ -262,6 +284,6 @@ session.setAttribute("path", path); %>
 	</footer>
 	
 	 <script type="text/JavaScript" src="js/jsHome.js"></script>
-
+ <script type="text/JavaScript" src="js/selezionaVolo.js"></script>
 </body>
 </html>

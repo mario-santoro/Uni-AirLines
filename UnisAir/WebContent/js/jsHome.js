@@ -12,6 +12,8 @@ $(document).ready(function(){
    $('#datPartenza').val(today);
    $('#datRitorno').val(today);
    
+   
+   
  //In base al click sul radio button, abilito o disabilito la data di ritorno
 $('#rad1').click(function(){
 $('input[name="datRitorno"]').attr('disabled',false);

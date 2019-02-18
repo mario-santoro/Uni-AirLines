@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList"%>
-
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.GregorianCalendar" %>
+<%@page import="java.util.Calendar" %>
+<%@page import="java.util.Date" %>
+<%@page import=" java.text.SimpleDateFormat"%>
 <%@page import="model.Prenotazione"%>
 <%@page import="model.Utente"%>
 
@@ -61,8 +65,23 @@ Utente u=(Utente)session.getAttribute("userBean");%>
 	<br>
 	<br>
 	<br>
-	<%} %> <% for(int i=0;i<p.size();i++){%>
+	<%} %> <% for(int i=0;i<p.size();i++){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = df.parse(p.get(i).getVolo().getData());
+		GregorianCalendar allaData = new GregorianCalendar();
+		allaData.setTime(date);
+		
+		GregorianCalendar dallaData = new GregorianCalendar();
+		long dallaDataMilliSecondi = dallaData.getTimeInMillis();
+		long allaDataMilliSecondi = allaData.getTimeInMillis();
+		long millisecondiFraDueDate = allaDataMilliSecondi - dallaDataMilliSecondi;
+		double giorniFraDueDate = millisecondiFraDueDate / 86400000;
+		giorniFraDueDate++;
+		System.out.println(giorniFraDueDate);
+		
+	%>
 	<div class="storico">
+		<span class="cod" hidden=""><%=p.get(i).getCodPrenotazione() %></span>
 		<span class="infoStorico"> Volo Prenotato in data <span
 			class="special"><%=p.get(i).getData() %></span> da <span
 			class="special"><%=p.get(i).getVolo().getAeroportoPartenza() %></span>
@@ -75,11 +94,17 @@ Utente u=(Utente)session.getAttribute("userBean");%>
 				<%for(int j=0;j<p.get(i).getPasseggeri().size();j++){ %> <%=p.get(i).getPasseggeri().get(j).getPosto() %>-
 				<%} %>)</span><br> Totale bagagli: <span class="special"><%=p.get(i).getNumBagagliTot() %></span><br>
 			Prezzo: <span class="special"><%=p.get(i).getPrezzoTotale() %>&euro;</span><br>
+			<%if(p.get(i).isChangeVolo()){ %><span class="special" style="color:red;">Il volo è stato modificato</span><%} %> 
+			<% if( p.get(i).getVolo().isDelete()){ %><span class="special" style="color:red;">Il volo è stato cancellato(Il rimborso avverrà in automatico)</span><%} %> 
+			
 		</div>
+		<% if( !p.get(i).getVolo().isDelete()){ %>
 		<div class="buttonContent">
 		
-			<button type="button" class="BtnStorico">Procedi al check-in</button>
+			<button type="button" class="BtnStorico" <%if(giorniFraDueDate>3) {%>style ="display: none"<%} %>>Procedi al check-in</button>
 		</div>
+		<%} %>
+		
 	</div>
 	<%} %> </main>
 
@@ -129,6 +154,12 @@ Utente u=(Utente)session.getAttribute("userBean");%>
 	</footer>
 
 	<script type="text/JavaScript" src="js/jsHome.js"></script>
-
+		<script type="text/javascript">
+	$('.BtnStorico').click(function(){
+	  var index =   $('.BtnStorico').index(this);
+	  var cod = $(".cod").text()[index];
+	  window.location="Checkin?codice="+cod;
+	});
+	</script>
 </body>
 </html>

@@ -57,7 +57,10 @@ left:30px;
 	
 }
 
-
+#contenitoreRitorno{
+	display:none;
+	text-align: center;
+}
 
 .infooff{
 	
@@ -79,7 +82,7 @@ left:30px;
 
 
 
-#legenda{
+.legenda{
 	background-color: white;
 	padding: 25px;
 	margin: 25px;
@@ -97,7 +100,7 @@ left:30px;
 }
 
 
-#prezzoAttuale{
+.prezzoAttuale{
 	display:inline-block;
 	background-color: white;
 	padding: 25px;
@@ -116,7 +119,7 @@ left:30px;
 	
 }
 
-#aereo{
+.aereo{
 	display:inline-block;
 	margin: 2px;
 	margin-top:-115px;
@@ -151,7 +154,24 @@ left:30px;
 	
 	
 }
-
+.btnPrenotaR{
+	
+	
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	border: 2px solid black;
+	outline:none;
+	background-color: green;
+	min-width: 40px;
+	height: 40px;
+	color: black;
+	font-size: 1.4em;
+	font-weight: bold;
+	display:inline-block;
+	margin-right:3px;
+	margin-bottom: 20px;
+}
 .btnPrenotalegendaocc{
 	
 		webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -204,7 +224,7 @@ left:30px;
 @media screen and (max-width: 1000px){
 
 	
-	#legenda{
+	.legenda{
 
 	
 	margin-top: 150px;
@@ -215,7 +235,7 @@ left:30px;
 }
 
 
-#prezzoAttuale{
+.prezzoAttuale{
 	
 	
 	margin-top: 0px;

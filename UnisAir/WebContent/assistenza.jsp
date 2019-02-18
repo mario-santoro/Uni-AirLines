@@ -18,9 +18,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
- <link href="css/assistenza.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/template.css" type="text/css">
-
+<link href="css/assistenza.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 	  
 	  $(document).ready(function(){ 

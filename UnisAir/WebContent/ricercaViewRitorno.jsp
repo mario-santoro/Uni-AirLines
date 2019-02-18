@@ -4,7 +4,6 @@
 <%@page import="model.Volo"%>
 <%@page import="model.Aereo"%>
 <%@page import="model.Utente"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +24,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/template.css" type="text/css">
 <link rel="stylesheet" href="css/ricerca.css" type="text/css">
 <script type="text/javascript">
+
+
 
 $(document).ready(function(){ 
 
@@ -56,6 +57,7 @@ $(document).ready(function(){
 	document.getElementById("overlay4").style.display = "none";
 	}
 </script>
+
 </head>
 <body>
 <%session.setAttribute("denied", false); %>
@@ -150,14 +152,15 @@ session.setAttribute("path", path); %>
 session.setAttribute("denied2",false);
 %>
 <%		
-		ArrayList<Volo> voli = (ArrayList<Volo>) session.getAttribute("voliAndata");
-		String AereoportoPartenza=(String) session.getAttribute("AereoportoPartenza");
-		String AereoportoDestinazione=(String) session.getAttribute("AereoportoDestinazione");
-		String Data=(String) session.getAttribute("Data");
-		int Passeggeri=(int) session.getAttribute("Passeggeri");
+		ArrayList<Volo> voli = (ArrayList<Volo>) session.getAttribute("voliRitorno");
 		
+		String AereoportoPartenza=(String) session.getAttribute("AereoportoDestinazione");
+		String AereoportoDestinazione=(String) session.getAttribute("AereoportoPartenza");
+		String Data=(String) session.getAttribute("DataRitorno");
+		int Passeggeri=(int) session.getAttribute("Passeggeri");
 	%>
-				<div id="overlay4">
+	
+			<div id="overlay4">
 		<div id="accesso">
 		<span onclick="offE()" id="x" class="glyphicon glyphicon-remove"></span>
 			<h2>Devi effettuare l'accesso</h2>
@@ -180,6 +183,7 @@ session.setAttribute("denied2",false);
 		
 		
 	</div>
+					
 					<div class="infoRicerca"> 
 						Voli  da: <%=AereoportoPartenza %>	a: <%=AereoportoDestinazione %> <br>
 						in data: <%=Data %><br>
@@ -200,7 +204,7 @@ session.setAttribute("denied2",false);
 								<span class="orarioVoli"><%=voli.get(i).getOraPartenza().substring(0,5) %> <span class="gl">&#9866; &#9866; &#9992; </span><%=voli.get(i).getOraArrivo().substring(0,5) %></span>
 								<br>
 								Durata volo: <%=voli.get(i).getDurataVolo().substring(0,5) %><br>
-								<button onclick="AndataeRitorno(<%=voli.get(i).getCodVolo() %>)"  > Prenota ora</button>
+								<button onclick=" AndataeRitorno(<%=voli.get(i).getCodVolo() %>,<%=request.getParameter("cod") %>)"  > Prenota ora</button>
 						</div>
 						<%} %>
 						
@@ -209,7 +213,14 @@ session.setAttribute("denied2",false);
 
 
 </div>
+<script>
+function AndataeRitorno(codVR,codVA){
 
+		window.location = "http://localhost:8080/UnisAir/ScelgoVolo?cod="+codVA+"&codRitorno="+codVR;
+		
+}
+
+</script>
 <footer> 
 		<div id="imgContent">
 			<img src="img/logoBianco.png" width="200" height="100" alt="">
@@ -250,20 +261,6 @@ session.setAttribute("denied2",false);
 					<span class="info"><a href="#">Informativa sulla privacy</a></span>
 				</div>
 	</footer>
-<script>
-function AndataeRitorno(codV){
-	
-	<%String Checked=(String) session.getAttribute("Andata/Ritorno");
-	if(Checked.equals("a/r")){%>
-		{	
-		window.location = "http://localhost:8080/UnisAir/ricercaViewRitorno.jsp?cod="+codV;
-		}
-		<%}else{%>
-	
-		window.location = "http://localhost:8080/UnisAir/ScelgoVolo?cod="+codV;
-		<%}%>
-}
-</script>
 	<script type="text/JavaScript" src="js/jsTemplate.js"></script>
 </body>
 </html>
