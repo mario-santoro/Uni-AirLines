@@ -101,7 +101,7 @@ function Avvertimento() {
 			<br> <span class="tipologiaPosto">PREMIUM</span>
 			<hr color="white">
 		
-			<%int i=0, p=0;
+			<%int i=0, p=0, j = 1;
 		for( i=0;i<1;i++){ 
 		for(p=0;p<6;p++){
 		%>
@@ -111,7 +111,7 @@ function Avvertimento() {
 			<button class="btnPrenota" type="button" onclick="scelgoPosto(<%=pA.getNumBiglietti()%>,<%=pA.getVolo().getPrezzoPremium()-pA.getVolo().getPrezzoEconomy() %>,<%=p%>,this)"><%=postiA.get(p).getNumPosto() %></button>
 			<%} %>
 			<%if(p%6==2) {%>
-			<span class="tipologiaPosto"><%=i+1 %></span>
+			<span class="tipologiaPosto"><%=j++%></span>
 			<%}} %>
 
 
@@ -129,7 +129,7 @@ function Avvertimento() {
 			<button class="btnPrenota" type="button" onclick="scelgoPosto(<%=pA.getNumBiglietti()%>,<%=pA.getVolo().getPrezzoBusiness()-pA.getVolo().getPrezzoEconomy() %>,<%=p%>,this)"><%=postiA.get(p).getNumPosto() %></button>
 			<%} %>
 			<%if(p%6==2) {%>
-			<span class="tipologiaPosto"><%=i+1 %></span>
+			<span class="tipologiaPosto"><%=j++ %></span>
 			<%}} %>
 
 
@@ -145,7 +145,7 @@ function Avvertimento() {
 			<button class="btnPrenota" type="button" onclick="scelgoPosto(<%=pA.getNumBiglietti()%>,0,<%=p%>,this)"><%=postiA.get(p).getNumPosto() %></button>
 			<%} %>
 			<%if(p%6==2)  {%>
-			<span class="tipologiaPosto"><%=i+1 %></span>
+			<span class="tipologiaPosto"><%=j++ %></span>
 			<%}} %>
 
 

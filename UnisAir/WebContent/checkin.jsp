@@ -2,7 +2,7 @@
 <%@page import="model.Passeggero"%>
 <%@page import="model.Prenotazione"%>
 <%@page import="model.Utente"%>
-
+<%@page import="dao.PrenotazioneDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -38,6 +38,9 @@ Prenotazione prenotazione = (Prenotazione)request.getSession().getAttribute("pre
 %>
 
 <%Utente u=(Utente)session.getAttribute("userBean");
+PrenotazioneDAO pdao = new PrenotazioneDAO();
+Boolean check = pdao.getCheckInIsDone(prenotazione.getCodPrenotazione());
+session.setAttribute("check", check);
 String path=request.getServletPath();	
 session.setAttribute("path", path); %>
 <!-- NAVBAR -->
@@ -142,8 +145,10 @@ session.setAttribute("path", path); %>
 $(document).ready(function(){
 
 	var check="${check}"
-	if(check == "true")
+	if(check == "true"){
 		$('#bottone').attr('disabled','disabled');
+		$('#bottone').css('opacity', '0.6');
+	}
     });
 
 

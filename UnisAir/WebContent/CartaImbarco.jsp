@@ -1,3 +1,4 @@
+<%@page import="dao.PrenotazioneDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@page import="java.util.ArrayList"%>
@@ -37,8 +38,9 @@ ArrayList<Passeggero> passeggeriVolo = (ArrayList<Passeggero>)request.getSession
 Prenotazione prenotazione = (Prenotazione)request.getSession().getAttribute("prenotazione");
 Posto posto = new Posto();
 PostoDAO postoDAO = new PostoDAO();
-Boolean check = true;
-session.setAttribute("check", check);
+PrenotazioneDAO pdao = new PrenotazioneDAO();
+pdao.setCheckInIsDone(prenotazione.getCodPrenotazione());
+
 %>
 
 <%Utente u=(Utente)session.getAttribute("userBean");
@@ -78,9 +80,9 @@ session.setAttribute("path", path); %>
 	
 
 	<%
-	int i = 0;
-	for(Passeggero p : prenotazione.getPasseggeri()){
-		posto = postoDAO.doRetrieveByKey(p.getPosto() , prenotazione.getVolo().getCod_aereo());
+	int i = 0;//prenotazione.getPasseggeri()
+	for(Passeggero p : passeggeriVolo){
+		posto = postoDAO.doRetrieveByKey(prenotazione.getPasseggeri().get(i).getPosto(), prenotazione.getVolo().getCod_aereo());
 		String tipologia = posto.getTipologia();
 	%>		
 	<div id="dettagliVolo" style=" background:  linear-gradient(to bottom right,rgba(250,120,0,0.7),rgba(250,150,0,0.7)) , url(img/logo.png) ; background-repeat: no-repeat;  background-size: contain;">
@@ -100,9 +102,9 @@ session.setAttribute("path", path); %>
 
 	<div class="dettagliVoloPosto">
 			<h2 class="biglietto">
-				Nome: <span id="nomePass"><%=passeggeriVolo.get(i).getNome() %></span> <br> <br> 
-				Cognome: <span id="cognomePass"><%=passeggeriVolo.get(i).getCognome() %></span> <br> 
-				<br> Posto <span id="Posto"><%=p.getPosto() %></span> <br>
+				Nome: <span id="nomePass"><%=p.getNome() %></span> <br> <br> 
+				Cognome: <span id="cognomePass"><%=p.getCognome()%></span> <br> 
+				<br> Posto <span id="Posto"><%=prenotazione.getPasseggeri().get(i).getPosto()%></span> <br>
 				<br> Classe <span id="ClasseViaggio"> <%=tipologia %></span>
 		</h2>
 		</div>
