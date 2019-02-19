@@ -59,7 +59,7 @@ function Avvertimento() {
         <a href="Storico" class="link">Storico</a>
         <br>
 
-        <a href="#" class="link">Modifica dati</a>
+        <a href="ModificaUtente.jsp" class="link">Modifica dati</a>
         <br>
 
         <a href="Logout" class="link">Logout</a>
@@ -251,6 +251,7 @@ function Avvertimento() {
 
 
 			<%} %>
+		
 		</div>
 		<br>
 		<div class="prezzoAttuale">
@@ -270,50 +271,48 @@ function Avvertimento() {
 	</div>
 		
 	</div>
-
-	<footer>
+	<%} %>
+	
+	<footer> 
 		<div id="imgContent">
 			<img src="img/logoBianco.png" width="200" height="100" alt="">
 			<div id="socialBar">
-				<span id="labelSocial">Seguici su:</span> <span><a href="#"
-					class="linkFooter"><img src="img/facebook.svg" width="32"
-						height="32"></a></span> <span><a href="#" class="linkFooter"><img
-						src="img/instagram.svg" width="32" height="32"></a></span> <span><a
-					href="#" class="linkFooter"><img src="img/twitter.svg"
-						width="32" height="32"></a></span> <span><a href="#"
-					class="linkFooter"><img src="img/linkedin.svg" width="32"
-						height="32"></a></span>
+				<span id="labelSocial">Seguici su:</span>
+				<span><a href="#" class="linkFooter"><img src="img/facebook.svg" width="32" height="32"></a></span>
+				<span><a href="#" class="linkFooter"><img src="img/instagram.svg" width="32" height="32"></a></span>
+				<span><a href="#" class="linkFooter"><img src="img/twitter.svg" width="32" height="32"></a></span>
+				<span><a href="#" class="linkFooter"><img src="img/linkedin.svg" width="32" height="32"></a></span>
 			</div>
 		</div>
-		<div id="contentWrapper">
-			<div id="assistenza" class="footerComponent">
-				<h5 class="text-uppercase">ASSISTENZA</h5>
-				<a href="#" class="linkFooter"><p>Domande frequenti</p></a> <a
-					href="#" class="linkFooter"><p>Check-in online</p></a> <a href="#"
-					class="linkFooter"><p>Metodi di pagamento</p></a> <a href="#"
-					class="linkFooter"><p>Bagagli</p></a> <a href="#"
-					class="linkFooter"><p>Ritardi e cancellazione</p></a>
-			</div>
-			<div id="contatti" class="footerComponent">
-				<h5 class="text-uppercase">CONTATTI</h5>
-				<a href="#" class="linkFooter"><p>Tel: 555-00000</p></a> <a href="#"
-					class="linkFooter"><p>e-mail:info@unisair.com</p></a>
+		<div id="contentWrapper">	
+				<div id="assistenza" class="footerComponent">
+							<h5 class="text-uppercase">ASSISTENZA</h5>
+							<a href="assistenza.jsp" class="linkFooter"><p>Domande frequenti</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Check-in online</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Metodi di pagamento</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Bagagli</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Ritardi e cancellazione</p></a>
+				</div>
+				<div id="contatti" class="footerComponent">
+							<h5 class="text-uppercase">CONTATTI</h5>
+							<a href="#" class="linkFooter"><p>Tel: 555-00000</p></a>
+							<a href="#" class="linkFooter"><p>e-mail:info@unisair.com</p></a>
 
-			</div>
-			<div id="Partner" class="footerComponent">
-				<h5 class="text-uppercase">BUSINESS PARTNERS</h5>
-				<a href="#" class="linkFooter"><p>Affiliate marketing</p></a> <a
-					href="#" class="linkFooter"><p>e-Procurement</p></a>
+				</div>
+				<div id="Partner" class="footerComponent">
+							<h5 class="text-uppercase">BUSINESS PARTNERS</h5>
+							<a href="#" class="linkFooter"><p>Affiliate marketing</p></a>
+							<a href="#" class="linkFooter"><p>e-Procurement</p></a>
 
-			</div>
-		</div>
+				</div>
+		</div>	
 		<div id="infoFooter">
-			<span class="titleInfo">UnisAir</span> <span class="info"><a
-				href="#">Utilizzo dei cookie</a></span> <span class="info"><a
-				href="#">Infotmazioni legali</a></span> <span class="info"><a
-				href="#">Informativa sulla privacy</a></span>
-		</div>
-		<%} %>
+					<span class="titleInfo">UnisAir</span>
+					<span class="info"><a href="#">Utilizzo dei cookie</a></span>
+					<span class="info"><a href="#">Infotmazioni legali</a></span>
+					<span class="info"><a href="#">Informativa sulla privacy</a></span>
+				</div>
+				
 	</footer>
 <script type="text/javascript">
 var bas=document.getElementById("prezzobase").innerHTML*1;
@@ -330,6 +329,7 @@ var x = document.getElementsByClassName("btnPrenota");
 var xR = document.getElementsByClassName("btnPrenotaR");
 var a=[];
 var r=[];
+var totP;
 function scelgoPosto(persone,prezzo,index,codice){
 	
 	count++;
@@ -367,6 +367,7 @@ function scelgoPostoR(persone,prezzo,index,codice){
 
 function continua(persona){
 	if(count>=persona){
+		totP=document.getElementById("totale").innerHTML;
 		  var n = a.length;
 		     var i = 0;
 		     var j = 0;
@@ -388,15 +389,15 @@ function continua(persona){
 	baseR+=tot;
 	 document.getElementById("prezzobaseR").innerHTML=baseR;
 			document.getElementById("totaleR").innerHTML=baseR;
-			
+			alert("ora scegli posti per il ritorno");
 			
 			document.getElementById("contenitore").style.display="none";
 			document.getElementById("contenitoreRitorno").style.display="block";
 		}
 		<%}else{%>
 		
-	   
-	window.location = "http://localhost:8080/UnisAir/SalvaPosti?"+stringa;
+		
+	window.location = "http://localhost:8080/UnisAir/SalvaPosti?"+stringa+"&prezzoTot="+totP;
 		<%}%>
 		
 	}else{
@@ -416,7 +417,9 @@ function continuaR(persona){
 	         
 	     }
 	     stringaR = stringaR.substring(0, stringaR.length - 1);
-	window.location = "http://localhost:8080/UnisAir/SalvaPosti?"+stringa+"&"+stringaR;
+	     var totPR=document.getElementById("totaleR").innerHTML;
+	     totPR=totPR-totP;
+	window.location = "http://localhost:8080/UnisAir/SalvaPosti?"+stringa+"&"+stringaR+"&prezzoTot="+totP+"&prezzoTotR="+totPR;
 		
 	}else{
 		

@@ -77,7 +77,7 @@ session.setAttribute("path", path); %>
         <a href="Storico" class="link">Storico</a>
         <br>
 
-        <a href="#" class="link">Modifica dati</a>
+        <a href="ModificaUtente.jsp" class="link">Modifica dati</a>
         <br>
 
         <a href="Logout" class="link">Logout</a>
@@ -154,7 +154,9 @@ session.setAttribute("denied2",false);
 		String AereoportoPartenza=(String) session.getAttribute("AereoportoPartenza");
 		String AereoportoDestinazione=(String) session.getAttribute("AereoportoDestinazione");
 		String Data=(String) session.getAttribute("Data");
+		String DataR=(String) session.getAttribute("DataRitorno");
 		int Passeggeri=(int) session.getAttribute("Passeggeri");
+		ArrayList<Volo> voliR = (ArrayList<Volo>) session.getAttribute("voliRitorno");
 		
 	%>
 				<div id="overlay4">
@@ -180,11 +182,18 @@ session.setAttribute("denied2",false);
 		
 		
 	</div>
-					<div class="infoRicerca"> 
+					<div id="infoRicerca"> 
 						Voli  da: <%=AereoportoPartenza %>	a: <%=AereoportoDestinazione %> <br>
 						in data: <%=Data %><br>
 						per <%=Passeggeri %> passeggeri
 					</div>
+					<%if(DataR!=null){ %>
+					<div id="infoRicercaRitorno"> 
+						Voli  da: <%=AereoportoDestinazione %> 	a: <%=AereoportoPartenza %><br>
+						in data: <%=DataR %><br>
+						per <%=Passeggeri %> passeggeri
+					</div>
+					<%} %>
 					<div class="filtri">
 							Ordina per: <select>
 								<option>Ora</option>
@@ -192,7 +201,9 @@ session.setAttribute("denied2",false);
 								<option>Prezzo Decrescente</option>
 							</select>
 						</div>
-					<div class="ContenitoreVoli">
+						
+						
+					<div id="ContenitoreVoli">
 					<%if(voli.size()==0){ %><h2 class="vuoto">Non ci sono voli disponibili al momento</h2><%} %>
 	<%for(int i=0;i<voli.size();i++){ %>
 						<div class="volo">
@@ -205,12 +216,31 @@ session.setAttribute("denied2",false);
 						<%} %>
 						
 					</div>
+					
+					
+					<%if(voliR!=null){ %>
+								
+					<div id="ContenitoreVoliRitorno">
+					<%if(voliR.size()==0){ %><h2 class="vuoto">Non ci sono voli disponibili al momento</h2><%} %>
+	<%for(int i=0;i<voliR.size();i++){ %>
+						<div class="volo">
+								Volo num:	<%=voliR.get(i).getCodVolo() %>	<div class="prezzo"> <%=voliR.get(i).getPrezzoEconomy() %></div><br>
+								<span class="orarioVoli"><%=voli.get(i).getOraPartenza().substring(0,5) %> <span class="gl">&#9866; &#9866; &#9992; </span><%=voliR.get(i).getOraArrivo().substring(0,5) %></span>
+								<br>
+								Durata volo: <%=voliR.get(i).getDurataVolo().substring(0,5) %><br>
+								<button onclick="Ritorno(<%=voliR.get(i).getCodVolo() %>)"  > Prenota ora</button>
+						</div>
+						<%} %>
+						
+					</div>
+					<%} %>
 </main>
 
 
 </div>
 
-<footer> 
+
+	<footer> 
 		<div id="imgContent">
 			<img src="img/logoBianco.png" width="200" height="100" alt="">
 			<div id="socialBar">
@@ -224,11 +254,11 @@ session.setAttribute("denied2",false);
 		<div id="contentWrapper">	
 				<div id="assistenza" class="footerComponent">
 							<h5 class="text-uppercase">ASSISTENZA</h5>
-							<a href="#" class="linkFooter"><p>Domande frequenti</p></a>
-							<a href="#" class="linkFooter"><p>Check-in online</p></a>
-							<a href="#" class="linkFooter"><p>Metodi di pagamento</p></a>
-							<a href="#" class="linkFooter"><p>Bagagli</p></a>
-							<a href="#" class="linkFooter"><p>Ritardi e cancellazione</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Domande frequenti</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Check-in online</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Metodi di pagamento</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Bagagli</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Ritardi e cancellazione</p></a>
 				</div>
 				<div id="contatti" class="footerComponent">
 							<h5 class="text-uppercase">CONTATTI</h5>
@@ -251,17 +281,28 @@ session.setAttribute("denied2",false);
 				</div>
 	</footer>
 <script>
+var codA;
 function AndataeRitorno(codV){
-	
+
 	<%String Checked=(String) session.getAttribute("Andata/Ritorno");
 	if(Checked.equals("a/r")){%>
 		{	
-		window.location = "http://localhost:8080/UnisAir/ricercaViewRitorno.jsp?cod="+codV;
+			alert("ora scegli volo per il ritorno");
+			document.getElementById("ContenitoreVoli").style.display="none";
+			document.getElementById("ContenitoreVoliRitorno").style.display="block";
+			document.getElementById("infoRicerca").style.display="none";
+			document.getElementById("infoRicercaRitorno").style.display="block";
+			codA=codV;
 		}
 		<%}else{%>
 	
 		window.location = "http://localhost:8080/UnisAir/ScelgoVolo?cod="+codV;
 		<%}%>
+}
+function Ritorno(codR){
+	
+	window.location = "http://localhost:8080/UnisAir/ScelgoVolo?cod="+codA+"&codRitorno="+codR;
+	
 }
 </script>
 	<script type="text/JavaScript" src="js/jsTemplate.js"></script>

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="model.Utente"%>
-	 	 <%@page import="model.Prenotazione"%>
+    <%@page import="model.Utente"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UnisAir</title>
+<title>UnisAir - Report</title>
 <link rel="stylesheet"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- Latest compiled and minified CSS -->
@@ -20,27 +20,26 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="js/bootstrap.min.js"></script>
  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="css/template.css" type="text/css">
-<link rel="stylesheet" href="css/pagamento.css" type="text/css">
-
+<link rel="stylesheet" href="css/report.css" type="text/css">
 </head>
 <body>
-
-<%Utente u=(Utente)session.getAttribute("userBean");%>
-
-
-	<!-- NAVBAR -->
-	<nav>
+<%
+Utente u=(Utente)session.getAttribute("userBean");
+Boolean controllo = (Boolean)session.getAttribute("controllo");
+%>
+<!-- NAVBAR -->
+<nav>
   <a href="index.jsp">
     <img src="img/logo.png" width="200" height="100" alt="">
   </a>
-
+  <%if(u!=null){ %>
    <a>
        <span class="l"><span class="glyphicon glyphicon-user"></span>
 							<%=u.getNome() %></span> 
       </a>
      <div id="menu">
           <div id="contenutimenu">
-        <a href="Storico" class="link">Storico</a>
+        <a href="VisualizzaPrenotazioni" class="link">Storico</a>
         <br>
 
         <a href="ModificaUtente.jsp" class="link">Modifica dati</a>
@@ -49,44 +48,33 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <a href="Logout" class="link">Logout</a>
      </div>
      </div>
-
-    
-  
+  <%}else{ %>
+      <a>
+       <span class="l">Accedi</span> 
+      </a>
+      <div id="menu">
+      <form action="Login" method="post">
+        Email:<br>
+        <input class="campo-login"  type="text" name="email" placeholder="E-mail"><br>
+        Password:<br>
+        <input class="campo-login" type="password" name="psw" placeholder="Password"><br>
+        <input class="btnR" type="submit" value="Accedi">
+        </form>
+       	<p>Non sei ancora registrato?</p>
+       	<a href="Registrazione.jsp" class="link">Registrati!</a>
+       	   </div>
+       	<%} %> 
 </nav>
-	  <div class="spazio"></div>
-
+<div class="spazio"></div>
 <main>
-	<h2>Seleziona metodo di pagamento</h2>
-	
-	<button type="button" onClick="anulla()" class="btnForm">Indietro</button>
-	<form id="formPagamento"  name="formPagamento"  action="ScelgoPagamento" method="post" onsubmit="return validateForm()">
-	<div id="dataShow">
-
-			Nome: <span class="result"><%=u.getNome() %></span><br>
-			Cognome: <span class="result"><%=u.getCognome() %></span><br>
-		
-			Tipo di Pagamento:<br>
-			<select name="tipoP">
-				<option>Visa</option>
-				<option>Mastercard</option>
-				<option>AmericanExpress</option>
-			</select>
-			<br>
-			Nome Proprietario:<br>
-			<input type="text" id="proprietario" name="proprietario" placeholder="Nome Proprietario"  required><br>
-			Numero Carta:<br>
-			<input type="text" id="numero" name="numero" placeholder="Numero Carta(max 16)" required><br>
-		Data Scadenza Carta:<br>
-		<input type="date" id="scadenza" name="scadenza" placeholder="12-31-2019" required><br>
-			CVC/CVV:<br>
-			<input type="text" id="cvc" name="cvc" placeholder="(3 cifre)" required><br>
-	</div>
-	
-	<input type="submit" value="Continua" class="btnForm">
-	</form>
+<%if(controllo == true) {%>
+<h1>Prenotazione effettuata con successo</h1>
+<span id="messaggio">L'acquisto da lei effettuato è andato a buon fine. <br>Per tornare alla Home-Page <a href="index.jsp">clicca qui</a>.</span>
+<%} else{%>
+<h1>Ops...Qualcose è andato storto</h1>
+<span id="messaggio">L'acquisto da lei effettuato NON è andato a buon fine. <br> Provare a ripetere l'ordine e se il problema si ripresenta contattare assistenza.</span>
+<%} %>
 </main>
-
-
 <footer> 
 		<div id="imgContent">
 			<img src="img/logoBianco.png" width="200" height="100" alt="">
@@ -126,76 +114,6 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 					<span class="info"><a href="#">Infotmazioni legali</a></span>
 					<span class="info"><a href="#">Informativa sulla privacy</a></span>
 				</div>
-				
 	</footer>
-	<script type="text/javascript">
-	function validateForm()
-	{
-		
-		 var form = document.forms["formPagamento"];
-		
-			if (!validateProprietario(form.proprietario))
-				return false;
-			if (!validateNumeroCarta(form.numero))
-				return false;
-			if (!validateScadenza(form.scadenza))
-				return false;
-			if (!validateCVC(form.cvc))
-				return false;
-		}
-
-	function validateProprietario(proprietario){
-		var Regexp = /^[a-zA-Z ]{3,}$/;
-		if(proprietario.value.match(Regexp))
-			return true;
-		else{
-			alert('Il campo proprietario deve contenere solo lettere e spazi!');
-			proprietario.focus();
-			return false;
-		}
-	}
-	function validateNumeroCarta(numcarta){
-		var Regexp =/^[0-9]{16}$/
-		if(numcarta.value.match(Regexp))
-			return true;
-		else{
-			alert('Il campo Numero Carta deve contenere solo numeri ed essere di 16 cifre!');
-			numcarta.focus();
-			return false;
-		}
-		
-	}
-		
-		function validateScadenza(scadenza){
-			 var today = new Date();
-			 var myDate = new Date(scadenza.value);
-		        var today = new Date();
-		        if ( myDate >= today ) 
-		        	return true;
-		        else{
-		        	alert('Carta scaduta!');
-		        	scadenza.focus();
-		        	return false;
-		        }
-		}
-		
-		function validateCVC(cvc){
-			var Regexp =/^[0-9]{3}$/
-			if(cvc.value.match(Regexp))
-				return true;
-			else{
-				alert('Il CVC/CVV codice scritto sul retro della carta deve essere di almeno 3 cifre!');
-				cvc.focus();
-				return false;
-			}
-		}
-function annulla() {
-	  alert("tornando indietro la ricerca verrà annullata");
-	window.location = "http://localhost:8080/UnisAir/index.jsp";
-	}
-
-</script>
-
-<script type="text/JavaScript" src="js/jsTemplate.js"></script>
 </body>
 </html>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+		 <%@page import="model.Utente"%>
+	 	 <%@page import="model.Prenotazione"%>
+	 	  
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,103 +28,79 @@
 <link rel="icon" href="img/ms-icon-310x310.png" />
 </head>
 <body>
+<%Utente u=(Utente)session.getAttribute("userBean");%>
+<%Prenotazione pA=(Prenotazione)session.getAttribute("prenotazioneA");
+int count=(int)request.getSession().getAttribute("count");
+count++;
+	request.getSession().setAttribute("count",count);%>
+
 	<!-- NAVBAR -->
 	<nav>
-  <a>
+  <a href="index.jsp">
     <img src="img/logo.png" width="200" height="100" alt="">
   </a>
-      <a>
-       <span class="l">Accedi</span> 
+
+   <a>
+       <span class="l"><span class="glyphicon glyphicon-user"></span>
+							<%=u.getNome() %></span> 
       </a>
-      <div id="menu">
-        Email:<br>
-        <input class="campo-login"  type="text" placeholder="E-mail"><br>
-        Password:<br>
-        <input class="campo-login" type="text" placeholder="Password"><br>
-        <input class="btnR" type="submit" value="Accedi">
-       	<p>Non sei ancora registrato?</p>
-       	<a href="#" class="link">Registrati!</a>
-      </div>
+     <div id="menu">
+          <div id="contenutimenu">
+        <a href="Storico" class="link">Storico</a>
+        <br>
+
+        <a href="ModificaUtente.jsp" class="link">Modifica dati</a>
+        <br>
+
+        <a href="Logout" class="link">Logout</a>
+     </div>
+     </div>
+
     
   
 </nav>
 	
 		
 <div class="spazio"></div>
-	
-
-	<!-- Form di Inserimento Dati Anagrafici -->
-		
-	<h2>Inserimento dati anagrafici dei passeggeri</h2>
-	
-
-	<%for(int i=0;i<4;i++){ %>
-	<div class="ContenitoreInserimentoDatiAnagraficiForm">
-		<h3>Passeggero n:</h3>
-	<div id="DatiAnagrafici">
-	
-	<form id="FormDatiAnagrafici">
-  <table>
-    <tr>
-      <td align="right"><label>Nome</label></td>
-      <td align="left"><input type="text" class="FormInput"  name="Nome" placeholder="Nome" required/></td>
-    </tr> 
-    <tr> 
-      <td align="right"><label>Cognome</label></td>
-      <td align="left"><input type="text" class="FormInput" name="Cognome" placeholder="Cognome" required /></td>
-    </tr>
-    <tr>
-      <td align="right"><label>Documento</label></td>
-      <td align="left"> <select name="Documento" class="FormInput" id="Documento"  required>
-				<option value="CartaIdentità">Carta Identità</option>
-				<option value="Passaporto">Passaporto</option>
-			</select></td>
-    </tr>
-    <tr>
-      <td align="right"><label>Numero Documento</label></td>
-      <td align="left"><input class="FormInput"  type="text" name="NumeroDocumento" placeholder="Numero Documento" required /></td>
-    </tr>
-    <tr>
-      <td align="right"><label>Età</label></td>
-      <td align="left"><input class="FormInput" type="text" name="Età" placeholder="Età" required /></td>
-    </tr>
-    <tr>
-      <td align="right"><label>Nazione</label></td>
-      <td align="left"><input class="FormInput"  type="text" name="Nazione" placeholder="Nazione" required /></td>
-    </tr>
-    <tr>
-      <td align="right"><label>Città</label></td>
-      <td align="left"><input class="FormInput"  type="text" name="Città" placeholder="Città" required /></td>
-    </tr>
-    <tr>
-      <td align="right"><label>Indirizzo</label></td>
-      <td align="left"><input class="FormInput"  type="text" name="Indirizzo" placeholder="Indirizzo" required /></td>
-    </tr>
-    <tr>
-      <td align="right"><label>Cap</label></td>
-      <td align="left"><input class="FormInput"  type="text" name="Cap" placeholder="Cap" required /></td>
-    </tr>
-   
-     
-  </table>
-</form>
-</div>
-
-</div>
-	<%} %>
-<div class="SpazioFooter">
-</div>
-    <div class="SpazioFooter" align="center">
-<table >
-
-<tr>
-  
-      <td align="left"><input id="ButtonAnnulla" class="btnR" type="submit" value="Annulla"  />
-      <td align="right"></td>
-      <td align="left"><input id="ButtonConferma" onclick="return validateForm() " class="btnR" type="submit" value="Continua"  /></td>
-    </tr>
-    </table></div>
-	<footer> 
+	<main>
+		<h2>Inserimento dati anagrafici dei passeggeri</h2>
+		<h3>Passeggero n:<%=count+1 %></h3>
+		<!-- Form di Inserimento Dati Anagrafici -->
+		<div id="DatiAnagrafici">
+			<div class="ContenitoreInserimentoDatiAnagraficiForm">
+			    <form id="FormDatiAnagrafici"  method="post" action="SalvaPasseggeri" onSubmit="return validateForm()">
+				      <label>Codice Fiscale</label><br>
+				      <input type="text" class="FormInput"  name="CodiceFiscale" placeholder="Codice fiscale" required/><br>
+				      <label>Nome</label><br>
+				      <input type="text" class="FormInput"  name="Nome" placeholder="Nome" required/><br>
+				      <label>Cognome</label><br>
+				      <input type="text" class="FormInput" name="Cognome" placeholder="Cognome" required /><br>
+				      <label>Documento</label><br>
+				      <select name="Documento" class="FormInput" id="Documento"  required>
+						  <option value="CartaIdentità">Carta Identità</option>
+						  <option value="Passaporto">Passaporto</option>
+					  </select><br>
+				      <label>Numero Documento</label><br>
+				      <input class="FormInput"  type="text" name="NumeroDocumento" placeholder="Numero Documento" required /><br>
+				      <label>Età</label><br>
+				      <input class="FormInput" type="number" name="Eta" placeholder="Età" min="3" max="100" required /><br>
+				      <label>Nazione</label><br>
+				      <input class="FormInput"  type="text" name="Nazione" placeholder="Nazione" required /><br>
+				      <label>Città</label><br>
+				      <input class="FormInput"  type="text" name="Citta" placeholder="Città" required /><br>
+				      <label>Indirizzo</label><br>
+				      <input class="FormInput"  type="text" name="Indirizzo" placeholder="Indirizzo" required /><br>
+				      <label>Cap</label><br>
+				      <input class="FormInput"  type="text" name="Cap" placeholder="Cap" required /><br>
+				      <div id="btnContainer">
+					      <input id="ButtonAnnulla" class="btnR" type="submit" onClick="annulla()" value="Annulla"  />
+					      <input id="ButtonConferma"  class="btnR" type="submit" value="Continua"  />
+				      </div>
+			     </form>
+		     </div>
+		</div>
+  </main>
+<footer> 
 		<div id="imgContent">
 			<img src="img/logoBianco.png" width="200" height="100" alt="">
 			<div id="socialBar">
@@ -135,21 +114,23 @@
 		<div id="contentWrapper">	
 				<div id="assistenza" class="footerComponent">
 							<h5 class="text-uppercase">ASSISTENZA</h5>
-							<a href="#" class="linkFooter"><p>Domande frequenti</p></a>
-							<a href="#" class="linkFooter"><p>Check-in online</p></a>
-							<a href="#" class="linkFooter"><p>Metodi di pagamento</p></a>
-							<a href="#" class="linkFooter"><p>Bagagli</p></a>
-							<a href="#" class="linkFooter"><p>Ritardi e cancellazione</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Domande frequenti</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Check-in online</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Metodi di pagamento</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Bagagli</p></a>
+							<a href="assistenza.jsp" class="linkFooter"><p>Ritardi e cancellazione</p></a>
 				</div>
 				<div id="contatti" class="footerComponent">
 							<h5 class="text-uppercase">CONTATTI</h5>
 							<a href="#" class="linkFooter"><p>Tel: 555-00000</p></a>
 							<a href="#" class="linkFooter"><p>e-mail:info@unisair.com</p></a>
+
 				</div>
 				<div id="Partner" class="footerComponent">
 							<h5 class="text-uppercase">BUSINESS PARTNERS</h5>
 							<a href="#" class="linkFooter"><p>Affiliate marketing</p></a>
 							<a href="#" class="linkFooter"><p>e-Procurement</p></a>
+
 				</div>
 		</div>	
 		<div id="infoFooter">
@@ -158,12 +139,13 @@
 					<span class="info"><a href="#">Infotmazioni legali</a></span>
 					<span class="info"><a href="#">Informativa sulla privacy</a></span>
 				</div>
+				
 	</footer>
 	<script type="text/JavaScript" src="js/jsHome.js"></script>
 <script>
 function validateForm()
 {
-	 var form = document.forms["FormRegistrazione"];
+	 var form = document.forms["FormDatiAnagrafici"];
 	    if (!validateNome(form.Nome))
 	        return false;
 		if(!validateCittà(form.Città))
@@ -180,11 +162,11 @@ function validateForm()
 	        return false;
 		if (!validateEtà(form.Età))
 	        return false;
-		if (!validateCap(form.Cap))
+		if (!validateCodFisc(form.CodiceFiscale))
 	        return false;
 	}
 function validateNome(Nome){
-	var Regexp = /^[a-zA-Z ]+$/;
+	var Regexp = /^[a-zA-Z]{3,}$/;
 	if(Nome.value.match(Regexp))
 		return true;
 	else{
@@ -193,18 +175,20 @@ function validateNome(Nome){
 		return false;
 	}
 }
-function validateEtà(Età){
-	var Regexp = /^[0-9]+$/;
-	if(Età.value.match(Regexp))
+function validateCodFisc(cod){
+	
+	var Regexp =  /^[a-zA-Z0-9]{16}$/;
+	if(Password.value.match(Regexp))
 		return true;
 	else{
-		alert('Il campo Età deve contenere solo numeri!');
-		Età.focus();
+		alert('Il campo Codice Fiscale deve contenere solo lettere e numeri  deve essere di 16 caratteri!');
+		CodiceFiscale.focus();
 		return false;
 	}
+	
 }
 function validateNazione(Nazione){
-	var Regexp =  /^[a-zA-Z ]+$/;
+	var Regexp =  /^[a-zA-Z ]{3,}$/;
 	if(Password.value.match(Regexp))
 		return true;
 	else{
@@ -214,37 +198,37 @@ function validateNazione(Nazione){
 	}
 }
 function validateCittà(Città){
-	var Regexp =  /^[a-zA-Z ]+$/;
+	var Regexp =  /^[a-zA-Z ]{3,}$/;
 	if(Città.value.match(Regexp))
 		return true;
 	else{
-		alert('Il campo Nazione deve contenere solo lettere e spazi!');
-		Nazione.focus();
+		alert('Il campo Città deve contenere solo lettere e spazi!');
+		Città.focus();
 		return false;
 	}
 }
 function validateCap(Cap){
-	var Regexp =  /^[0-9]+$/;
+	var Regexp =  /^[0-9]{2,}$/;
 	if(Cap.value.match(Regexp))
 		return true;
 	else{
-		alert('Il campo Nazione deve contenere solo numeri!');
+		alert('Il campo CAP deve contenere solo numeri!');
 		Cap.focus();
 		return false;
 	}
 }
 function validateIndirizzo(Indirizzo){
-	var Regexp =  /^[a-zA-Z0-9 ]+$/;
+	var Regexp =  /^[a-zA-Z0-9 ]{6,}$/;
 	if(Indirizzo.value.match(Regexp))
 		return true;
 	else{
-		alert('Il campo Nazione deve contenere solo lettere,numeri e spazi!');
+		alert('Il campo Indirizzo deve contenere solo lettere,numeri e spazi e almeno di lunghezza 6!');
 		Indirizzo.focus();
 		return false;
 	}
 }
 function validateCognome(Cognome){
-	var Regexp = /^[a-zA-Z ]+$/;
+	var Regexp = /^[a-zA-Z ]{3,}$/;
 	if(Cognome.value.match(Regexp))
 		return true;
 	else{
@@ -254,15 +238,19 @@ function validateCognome(Cognome){
 	}
 }
 function validateNumeroDocumento(NumeroDocumento){
-	var Regexp = /^[a-zA-Z0-9]+$/;
+	var Regexp = /^[a-zA-Z0-9]{9}$/;
 	if(NumeroDocumento.value.match(Regexp))
 		return true;
 	else{
-		alert('Il campo Numero Documento deve contenere solo lettere e numeri!');
+		alert('Il campo Numero Documento deve contenere solo lettere e numeri e deve essere di lunghezza 9!');
 		NumeroDocumento.focus();
 		return false;
 	}
 }
+function annulla() {
+	  alert("tornando indietro la ricerca verrà annullata");
+	  window.location = "http://localhost:8080/UnisAir/index.jsp";
+	}
 </script>
 </body>
 </html>

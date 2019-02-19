@@ -2,6 +2,12 @@ nav{
 	background-color:#34344c; 
 	
 }
+#ContenitoreVoliRitorno{
+	display:none;
+	margin:10px;
+	margin-left:30px;
+	margin-bottom:30px ;
+}
 .btnlog{
     margin: 3%;
     webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -180,7 +186,7 @@ input[type="range"]::-webkit-slider-thumb::before {
 }
 
 
-.ContenitoreVoli{
+#ContenitoreVoli{
 	margin:10px;
 	margin-left:30px;
 	margin-bottom:30px ;
@@ -220,8 +226,15 @@ input[type="range"]::-webkit-slider-thumb::before {
 .gl{
     color:#ff6600;
 }
-	.infoRicerca{
+	#infoRicerca{
 		display: inline-block;
+		margin:25px;
+		font-size:20px;
+		margin-left:60px;
+	}
+	#infoRicercaRitorno{
+		display:none;
+	
 		margin:25px;
 		font-size:20px;
 		margin-left:60px;

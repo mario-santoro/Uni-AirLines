@@ -1,6 +1,39 @@
+.legenda{
+	background-color: white;
+	padding: 25px;
+	margin: 25px;
+	margin-top: 0px;
+	margin-right:200px;
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	text-align: center;
+	display:inline-block;
+	width: 310px;
+	vertical-align: top;
+}
 
 
+.prezzoAttuale{
+	display:inline-block;
+	background-color: white;
+	padding: 25px;
+	margin: 25px;
+	margin-top: 0px;
+	margin-left:200px;
+	width: 310px;
+	webkit-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	moz-box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.75);
+	vertical-align: top;
+}
 
+
+.special{
+	
+font-weight: bold;	
+	
+}
 
 
 
@@ -73,7 +106,7 @@ nav{
 	padding: 0px;
 	border: 0px;
 	width: 55px;
-	height: 30px;
+	height: 33px;
 	color: black;
 	text-align: right;
 	
@@ -85,5 +118,13 @@ nav{
 
 
 
-
+@media screen and (max-width: 1090px) {
+	.legenda{margin-right: 100px;}
+	.prezzoAttuale{margin-left: 100px;}
+	
+}@media screen and (max-width: 900px) {
+	.legenda{margin: 20px;}
+	.prezzoAttuale{margin: 20px;}
+	
+}
 

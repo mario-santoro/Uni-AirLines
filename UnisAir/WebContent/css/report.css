@@ -1,0 +1,21 @@
+@CHARSET "ISO-8859-1";
+nav{
+	background-color: #34344c;
+}
+.spazio{
+	height: 100px;
+}
+main{
+	padding: 30px;
+	margin:30px;
+	}
+	
+h1{
+	color: #ff6600;
+	font-size:4.5em
+}
+
+#messaggio{
+	color: black;
+	font-size:2.5em;
+}

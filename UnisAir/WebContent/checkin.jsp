@@ -45,7 +45,7 @@ session.setAttribute("path", path); %>
   <a href="index.jsp">
     <img src="img/logo.png" width="200" height="100" alt="">
   </a>
-  <%if(u!=null){ %>
+  
    <a>
        <span class="l"><span class="glyphicon glyphicon-user"></span>
 							<%=u.getNome() %></span> 
@@ -61,24 +61,6 @@ session.setAttribute("path", path); %>
         <a href="Logout" class="link">Logout</a>
      </div>
      </div>
-  <%}else{ %>
-      <a>
-       <span class="l">Accedi</span> 
-      </a>
-      <div id="menu">
-      <form action="Login" method="post">
-        Email:<br>
-        <input class="campo-login"  type="text" name="email" placeholder="E-mail"><br>
-        Password:<br>
-        <input class="campo-login" type="password" name="psw" placeholder="Password"><br>
-        <input class="btnR" type="submit" value="Accedi">
-        </form>
-       	<p>Non sei ancora registrato?</p>
-       	<a href="Registrazione.jsp" class="link">Registrati!</a>
-       	   </div>
-       	<%} %>
-   
-    
   
 </nav>
 	  <div class="spazio"></div>
