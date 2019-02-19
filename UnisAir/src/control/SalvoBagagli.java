@@ -14,57 +14,54 @@ import model.Passeggero;
 import model.Prenotazione;
 
 /**
- * Servlet implementation class SalvaPosti
+ * Servlet implementation class SalvoBagagli
  */
-@WebServlet("/SalvaPosti")
-public class SalvaPosti extends HttpServlet {
+@WebServlet("/SalvoBagagli")
+public class SalvoBagagli extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public SalvaPosti() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SalvoBagagli() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] postiA = request.getParameterValues("stringa");
-		double prezzoTot=Double.parseDouble(request.getParameter("prezzoTot"));
+		// TODO Auto-generated method stub
+		
 		String Checked=(String) request.getSession().getAttribute("Andata/Ritorno");
 		Prenotazione pA=(Prenotazione)request.getSession().getAttribute("prenotazioneA");
-		ArrayList<Passeggero> passeggeriA =new ArrayList<Passeggero>();
-		Passeggero p;
-		request.getSession().setAttribute("count",-1);
-		for(int i=0;i<postiA.length;i++){
-			p=new Passeggero();
-			p.setPosto(postiA[i]);
-			passeggeriA.add(p);
-		}
-		pA.setPrezzoTotale(prezzoTot);
-		pA.setPasseggeri(passeggeriA);
+		int index=(int)request.getSession().getAttribute("index");
+		double prezzo=Double.parseDouble(request.getParameter("prezzo"));
+		int quantBag=Integer.parseInt(request.getParameter("quanTot"));
+		pA.getPasseggeri().get(index).setNumBagaglio(quantBag);
+		pA.getPasseggeri().get(index).setTariffaBagaglio(prezzo);
+		pA.setNumBagagliTot(pA.getNumBagagliTot()+quantBag);
+		pA.setPrezzoTotale(pA.getPrezzoTotale()+prezzo);
+		
 		request.getSession().setAttribute("prenotazioneA", pA);
-
 		if(Checked.equals("a/r")){
-
-			String[] postiR = request.getParameterValues("stringaR");
 			Prenotazione pR=(Prenotazione)request.getSession().getAttribute("prenotazioneR");
-			ArrayList<Passeggero> passeggeriR =new ArrayList<Passeggero>();
-			double prezzoTotR=Double.parseDouble(request.getParameter("prezzoTotR"));
-			for(int i=0;i<postiR.length;i++){
-				p=new Passeggero();
-				p.setPosto(postiR[i]);
-				passeggeriR.add(p);
-			}
-			pR.setPasseggeri(passeggeriR);
-			pR.setPrezzoTotale(prezzoTotR);
+			pR.getPasseggeri().get(index).setNumBagaglio(quantBag);
+			pR.getPasseggeri().get(index).setTariffaBagaglio(prezzo);
+			pR.setNumBagagliTot(pR.getNumBagagliTot()+quantBag);
+			pR.setPrezzoTotale(pR.getPrezzoTotale()+prezzo);
 			request.getSession().setAttribute("prenotazioneR", pR);
 		}
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("InserimentoDatiAnagrafici.jsp");//pagina corrente
+		index++;
+	request.getSession().setAttribute("index",index);
+		if(index<pA.getNumBiglietti()){
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("SelBagaglio.jsp");//pagina corrente
 		requestDispatcher.forward(request, response);
+		}else{
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MetodiPagamento.jsp");//pagina corrente
+		requestDispatcher.forward(request, response);
+		}
 	}
 
 	/**

@@ -40,7 +40,7 @@ public class RicercaVolo extends HttpServlet {
 	String AereoportoPartenza=request.getParameter("ARpartenza");
 	String AereoportoDestinazione=request.getParameter("ARarrivo");
 	String dataPartenzaVolo=request.getParameter("dataPartenzaVolo");
-	String dataRitornoVolo=request.getParameter("datRitorno");
+	
 	int PasseggeriAdulti=Integer.parseInt(request.getParameter("numAdulti"));
 	int PasseggeriBambini=Integer.parseInt(request.getParameter("numBambini"));
 	int Passeggeri=PasseggeriAdulti+PasseggeriBambini;
@@ -52,14 +52,14 @@ public class RicercaVolo extends HttpServlet {
 	request.getSession().setAttribute("AereoportoPartenza", AereoportoPartenza);
 	request.getSession().setAttribute("AereoportoDestinazione", AereoportoDestinazione);
 	request.getSession().setAttribute("Data", dataPartenzaVolo);
-	request.getSession().setAttribute("DataRitorno", dataRitornoVolo );
+	
 	request.getSession().setAttribute("Passeggeri", Passeggeri);
 	RequestDispatcher d= request.getRequestDispatcher("ricercaView.jsp");
 	d.forward(request, response);
 	
 	}
 	else {
-		
+		String dataRitornoVolo=request.getParameter("datRitorno");
 		ArrayList<Volo> voliAndata=new ArrayList<Volo>();
 		ArrayList<Volo> voliRitorno=new ArrayList<Volo>();
 		voliAndata=v.doRetrieveByAereoportiEdataSoloAndata(AereoportoPartenza, AereoportoDestinazione, dataPartenzaVolo);

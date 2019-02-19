@@ -46,7 +46,6 @@ public class PasseggeroDAO {
 						p.setPaese(rs.getString("paese"));
 						p.setTipoDocumento(rs.getString("tipoDoc"));
 						p.setNumeroDocumento(rs.getString("numDoc"));
-						p.setCheckIsDone(rs.getBoolean("checkIsDone"));
 						
 					
 				passeggeri.add(p);
@@ -66,5 +65,47 @@ public class PasseggeroDAO {
 		}
 		return passeggeri;
 	}
+	
+	
+
+	public synchronized boolean controlloPresenzaSulVolo(String codFiscale, int codVolo){
+			boolean ok= true;
+		
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+	
+			conn = DriverManagerConnectionPool.getConnection();
+
+			String sql = "SELECT volo.codVolo FROM `passeggero` join prenotazione on passeggero.codPrenotazione=prenotazione.codPrenotazione "
+					+ "join volo on prenotazione.codVolo=volo.codVolo WHERE passeggero.codFiscale=? and volo.codVolo=?";
+			ps = (PreparedStatement) conn.prepareStatement(sql);
+			ps.setString(1,codFiscale);
+			ps.setInt(2,codVolo);
+			
+			rs = ps.executeQuery();
+			
+
+			if (rs.next()) {
+				ok=false;
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(conn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return ok;
+	}
+	
 	
 }

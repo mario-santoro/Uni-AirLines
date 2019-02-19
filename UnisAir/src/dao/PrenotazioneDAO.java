@@ -144,5 +144,103 @@ public class PrenotazioneDAO {
 		}
 		return p;
 	}
+	public synchronized boolean doSave(Prenotazione p){
+		
+		Connection conn = null;
+		PreparedStatement cmd = null;
+		try {
+	
+			conn = DriverManagerConnectionPool.getConnection();
+			
+
+		
+				String sql = "INSERT INTO prenotazione(dat,ora,prezzoTot,numBagagliTot,numBiglietti,email,codVolo) VALUES(?,?,?,?,?,?,?)";
+				cmd = (PreparedStatement) conn.prepareStatement(sql);
+				cmd.setString(1,p.getData());
+				cmd.setString(2,p.getOra());
+				cmd.setDouble(3, p.getPrezzoTotale());
+				cmd.setInt(4, p.getNumBagagliTot());
+				cmd.setInt(5, p.getNumBiglietti());
+				cmd.setString(6,p.getEmail());
+				cmd.setInt(7,p.getVolo().getCodVolo());
+			
+				cmd.executeUpdate();
+				
+				getMaxCod(p);
+				
+				for(int i=0;i< p.getPasseggeri().size();i++){
+				String sql2="INSERT INTO passeggero(codFiscale,tariffaBagaglio,numBagaglio,nome,cognome,eta,indirizzo,CAP,citta,paese,tipoDoc,numDoc,codPrenotazione) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				cmd = (PreparedStatement) conn.prepareStatement(sql2);
+				cmd.setString(1,p.getPasseggeri().get(i).getCodFiscale());
+				cmd.setDouble(2,p.getPasseggeri().get(i).getTariffaBagaglio());
+				cmd.setInt(3, p.getPasseggeri().get(i).getNumBagaglio());
+				cmd.setString(4,p.getPasseggeri().get(i).getNome());
+				cmd.setString(5, p.getPasseggeri().get(i).getCognome());
+				cmd.setInt(6, p.getPasseggeri().get(i).getEta());
+				cmd.setString(7,p.getPasseggeri().get(i).getIndirizzo());
+				cmd.setInt(8, p.getPasseggeri().get(i).getCap());
+				cmd.setString(9,p.getPasseggeri().get(i).getCitta());
+				cmd.setString(10,p.getPasseggeri().get(i).getPaese());
+				cmd.setString(11, p.getPasseggeri().get(i).getTipoDocumento());
+				cmd.setString(12,p.getPasseggeri().get(i).getNumeroDocumento());
+				cmd.setInt(13, p.getCodPrenotazione());
+				cmd.executeUpdate();
+				
+				String sql1="UPDATE postoprenotato set isPrenotato='1',codFiscale=? WHERE codVolo=? and codPosto=?";
+	            cmd = (PreparedStatement) conn.prepareStatement(sql1);
+	            cmd.setString(1,p.getPasseggeri().get(i).getCodFiscale());
+	        	cmd.setInt(2,p.getVolo().getCodVolo());
+	        	 cmd.setString(3,p.getPasseggeri().get(i).getPosto());
+	            cmd.executeUpdate();
+				
+				
+				
+				}
+				cmd.close();
+				return true;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				cmd.close();
+				DriverManagerConnectionPool.releaseConnection(conn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
+	}
+	
+	private synchronized void getMaxCod(Prenotazione p){
+		Connection conn = null;
+		PreparedStatement cmd = null;
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+		String sql4 ="select MAX(codPrenotazione) as maxCod from prenotazione";
+		cmd = (PreparedStatement) conn.prepareStatement(sql4);
+		ResultSet res = cmd.executeQuery();
+		if(res.next()){
+		p.setCodPrenotazione(res.getInt("maxCod"));
+		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cmd.close();
+				DriverManagerConnectionPool.releaseConnection(conn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		
+	}
 	
 }

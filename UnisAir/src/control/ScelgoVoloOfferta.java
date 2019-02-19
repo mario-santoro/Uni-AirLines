@@ -82,7 +82,7 @@ public class ScelgoVoloOfferta extends HttpServlet {
 				val = (double)((int) val);
 				minorPrezzo = val /100;
 				l.setPrezzoPremium(minorPrezzo);
-				
+			
 				quant=l.getQuant();
 			
 			GregorianCalendar data=new GregorianCalendar();
@@ -102,7 +102,7 @@ public class ScelgoVoloOfferta extends HttpServlet {
 			ArrayList<Posto> postiA=ad.getPostiPrenotabili(p.getVolo().getCodVolo());
 			request.getSession().setAttribute("postiA", postiA);
 			
-			
+			request.getSession().setAttribute("Andata/Ritorno", "a");
 	
 
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("SelezionaPosto.jsp");
