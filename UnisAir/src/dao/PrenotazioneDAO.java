@@ -243,4 +243,59 @@ public class PrenotazioneDAO {
 		
 	}
 	
+	public synchronized void setCheckInIsDone(int codPrenotazione){
+		Connection conn = null;
+		PreparedStatement cmd = null;
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			String sql1="UPDATE prenotazione set checkInIsDone='1' WHERE codPrenotazione=?";
+            cmd = (PreparedStatement) conn.prepareStatement(sql1);
+            cmd.setInt(1,codPrenotazione);
+            cmd.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		try {
+			cmd.close();
+			DriverManagerConnectionPool.releaseConnection(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+	}
+	public synchronized Boolean getCheckInIsDone(int codPrenotazione){
+		Connection conn = null;
+		PreparedStatement ps = null;
+		Boolean result = false;
+		try {
+	
+			conn = DriverManagerConnectionPool.getConnection();
+			ps = (PreparedStatement) conn.prepareStatement("SELECT checkInIsDone FROM prenotazione WHERE codPrenotazione= ?");
+			ps.setInt(1, codPrenotazione);
+
+			ResultSet res = ps.executeQuery();
+
+			if (res.next()) {
+				result = res.getBoolean("checkInIsDone");
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				DriverManagerConnectionPool.releaseConnection(conn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 }

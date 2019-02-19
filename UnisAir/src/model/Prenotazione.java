@@ -18,6 +18,7 @@ public class Prenotazione {
 	private boolean isChangeVolo;
 	private ArrayList<Passeggero> passeggeri;
 	private Volo volo;
+	private boolean checkIsDone;
 	
 	public Prenotazione() {
 		this.passeggeri=new ArrayList<Passeggero>();
@@ -188,6 +189,14 @@ public class Prenotazione {
 		this.numBagagliTot = numBagagliTot;
 	}
 
+	public boolean isCheckIsDone() {
+		return checkIsDone;
+	}
+
+
+	public void setCheckIsDone(boolean checkIsDone) {
+		this.checkIsDone = checkIsDone;
+	}
 
 	
 	

@@ -28,7 +28,7 @@ public class Passeggero {
 
 	public Passeggero(String codFiscale, double tariffaBagaglio, int numBagaglio, String nome, String cognome,
 			int eta, String indirizzo, int cap, String citta, String paese, String tipoDocumento,
-			String numeroDocumento, boolean checkIsDone,String posto) {
+			String numeroDocumento,String posto) {
 		this.codFiscale = codFiscale;
 		this.tariffaBagaglio = tariffaBagaglio;
 		this.numBagaglio =numBagaglio ;
@@ -41,7 +41,6 @@ public class Passeggero {
 		this.paese = paese;
 		this.tipoDocumento = tipoDocumento;
 		this.numeroDocumento = numeroDocumento;
-		this.checkIsDone = checkIsDone;
 		this.posto=posto;
 	}
 
@@ -196,18 +195,7 @@ public class Passeggero {
 
 
 
-	public boolean isCheckIsDone() {
-		return checkIsDone;
-	}
-
-
-
-
-
-	public void setCheckIsDone(boolean checkIsDone) {
-		this.checkIsDone = checkIsDone;
-	}
-
+	
 	
 
 	
